@@ -1,4 +1,5 @@
 <?php
+
 $estudiante = new Estudiante($_SESSION['id']);
 $estudiante->consultar();
 
@@ -13,7 +14,7 @@ $solucion = "";
 $documento = "";
 $compa = "";
 
-if (isset($_POST["crear"])) {
+if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
     $random = $_SESSION['id'] + rand(1, 100);
     $titulo = $_POST["titulo"];
@@ -25,7 +26,8 @@ if (isset($_POST["crear"])) {
 
     $doc = $_FILES['documento'];
 
-    if ($doc["size"] <= 100000) {
+    if ($doc["size"] <= 25000) {
+        echo "Nombre : " . $doc["name"] . "<br>";
 
         if (strpos($doc["type"], "pdf")) {
 
@@ -33,7 +35,7 @@ if (isset($_POST["crear"])) {
                 unlink("documentos/" . $doc["name"] . $_SESSION['id']);
             }
 
-            $destino = $_SERVER['DOCUMENT_ROOT'] . '/proyectoAI/documentos/';
+            $destino = $_SERVER['DOCUMENT_ROOT'] . '/proyectoAI1/documentos/';
             move_uploaded_file($doc['tmp_name'], $destino . $doc["name"] . ".pdf");
         }
 
@@ -62,7 +64,18 @@ if (isset($_POST["crear"])) {
         $error = "Nose 2";
     }
 
-    header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&mensaje=".$error);
+    //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php")/* . "&mensaje=".$error*/);
 }
 
 ?>
+
+
+<script>
+    $("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;");
+
+    Swal.fire({
+        title: 'Proyecto Creado',
+        text: 'Exitosamente!!!',
+        footer: '<a href="<?php echo "index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") ?>">Inicio</a>'
+    })
+</script>
