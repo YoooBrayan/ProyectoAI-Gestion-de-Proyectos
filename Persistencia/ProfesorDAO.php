@@ -1,0 +1,39 @@
+<?php
+
+class ProfesorDAO{
+
+    private $id;
+    private $nombre;
+    private $apellido;
+    private $correo;
+    private $clave;
+    private $carrera;
+
+    function ProfesorDAO($id="", $nombre="", $apellido="", $correo, $clave, $carrera=""){
+        $this -> id = $id;
+        $this -> nombre = $nombre;
+        $this -> apellido = $apellido;
+        $this -> correo = $correo;
+        $this -> clave = $clave;
+        $this -> carrera = $carrera;
+    }
+
+    function registrar(){
+        return "insert into Profesor(idProfesor, nombre, apellido, correo, clave) values
+                ('". $this -> id ."', '". $this -> nombre ."', '". $this -> apellido ."', '". $this -> correo ."', '". $this -> clave ."')";
+    }
+
+    function autenticar(){
+        return "select idProfesor from Profesor where correo = '". $this -> correo ."' and clave = sha1('". $this -> clave ."')";
+    }
+
+    function consultarTodos(){
+        return "select idProfesor, nombre, apellido, correo from profesor";
+    }
+
+    function existeCorreo(){
+        return "select idProfesor from profesor where correo = '" . $this -> correo ."'";
+    }
+}
+
+?>
