@@ -113,7 +113,7 @@ if (isset($_POST["crear"])) {
                                                                                                                                 ?>">
                             <label id="nomCompa" style="display: inline;"></label>
                         </div>
-                        <button type="submit" id="boton" name="crear" class="btn btn-dark">Crear</button>
+                        <button type="submit" id="boton" name="crear" class="btn btn-dark" >Crear</button>
                         <a class="btn btn-dark " href="index.php?pid=<?php echo base64_encode('presentacion/estudiante/crearProyecto.php')
                                                                         ?>" role="button">Inicio</a>
                     </form>
@@ -147,6 +147,7 @@ if (isset($_POST["crear"])) {
                 "style",
                 "display: inline; color: red;"
             );
+            $("#boton").prop("disabled", true);
         } else if (fileSize > 25000) {
 
             $("#larchivo").html("El archivo no debe superar los 25000 Bytes");
@@ -154,6 +155,7 @@ if (isset($_POST["crear"])) {
                 "style",
                 "display: inline; color: red;"
             );
+            $("#boton").prop("disabled", true);
             /*  console.log("Mayor");
               console.log("this.value: " + this.value);
               console.log("this.files[0].name: " + this.files[0].name);
@@ -167,6 +169,7 @@ if (isset($_POST["crear"])) {
                 "style",
                 "display: none; color: red;"
             );
+            $("#boton").prop("disabled", false); 
         }
 
 
