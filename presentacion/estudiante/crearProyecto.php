@@ -113,7 +113,7 @@ if (isset($_POST["crear"])) {
                                                                                                                                 ?>">
                             <label id="nomCompa" style="display: inline;"></label>
                         </div>
-                        <button type="submit" id="boton" name="crear" class="btn btn-dark" >Crear</button>
+                        <button type="submit" id="boton" name="crear" class="btn btn-dark">Crear</button>
                         <a class="btn btn-dark " href="index.php?pid=<?php echo base64_encode('presentacion/estudiante/crearProyecto.php')
                                                                         ?>" role="button">Inicio</a>
                     </form>
@@ -127,76 +127,26 @@ if (isset($_POST["crear"])) {
 
 <script type="text/javascript">
     $(document).on('change', 'input[type="file"]', function() {
+
         // this.files[0].size recupera el tamaño del archivo
         // alert(this.files[0].size);
-
-        var fileName = this.files[0].name;
-        var fileSize = this.files[0].size;
-
-        $("#archivo").html(fileName);
-
-        var ext = fileName.split('.').pop();
-
-        //console.log("name: " + fileName);
-        //console.log("size: " + fileSize);
-        if (ext != "pdf") {
-            // recuperamos la extensión del archivo
-
-            $("#larchivo").html("El archivo no tiene la extensión adecuada");
-            $("#larchivo").attr(
-                "style",
-                "display: inline; color: red;"
-            );
-            $("#boton").prop("disabled", true);
-        } else if (fileSize > 25000) {
-
-            $("#larchivo").html("El archivo no debe superar los 25000 Bytes");
-            $("#larchivo").attr(
-                "style",
-                "display: inline; color: red;"
-            );
-            $("#boton").prop("disabled", true);
-            /*  console.log("Mayor");
-              console.log("this.value: " + this.value);
-              console.log("this.files[0].name: " + this.files[0].name);
-              alert('El archivo no debe superar los 3MB');
-              console.log("this.files[0].name2: " + this.files[0].name);
-              //this.value = null;*/
-            console.log("this.files[0].name3: " + this.files[0].name);
-            //this.files[0].name = null;
-        } else {
-            $("#larchivo").attr(
-                "style",
-                "display: none; color: red;"
-            );
-            $("#boton").prop("disabled", false); 
-        }
-
+        console.log(this);
+        validarFile(this.files[0]);
 
 
     });
 
-
-    const form = document.getElementById('form');
-    var idCompa = "parametro";
-
-    form.addEventListener('submit', (e) => {
-
-        let b = validar('ID');
-
-        if (b === undefined) {
-            b = true;
-        } else if (!b) {
-            e.preventDefault();
-        }
-    })
-
-
     $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
+        e.preventDefault();
+
+        console.log($("#doc"));
+        console.log($("#doc")[0].files[0].name);
+
+        let a = validarFile($("#doc")[0].files[0]);
+                console.log(a);
 
 
         var doc = $("#doc").val();
-        console.log("Doc: " + doc);
         let idv = $("#compa").val();
         $.ajax({
             url: "<?php echo "indexAjax.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") ?>",

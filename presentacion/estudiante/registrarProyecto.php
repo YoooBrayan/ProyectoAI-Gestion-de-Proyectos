@@ -25,9 +25,11 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
     $compa = $_POST["compa"];
 
     $doc = $_FILES['documento'];
+    echo "Nombre : " . $doc["name"] . "<br>";
+    echo "size : " . $doc["size"] . "<br>";
 
     if ($doc["size"] <= 25000) {
-        echo "Nombre : " . $doc["name"] . "<br>";
+        
 
         if (strpos($doc["type"], "pdf")) {
 
@@ -73,9 +75,17 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 <script>
     $("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;");
 
-    Swal.fire({
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Your work has been saved',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+    /*Swal.fire({
         title: 'Proyecto Creado',
         text: 'Exitosamente!!!',
-        footer: '<a href="<?php echo "index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") ?>">Inicio</a>'
-    })
+        footer: '<a href="<?php // echo "index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") ?>">Inicio</a>'
+    })*/
 </script>
