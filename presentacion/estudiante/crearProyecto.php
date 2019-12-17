@@ -136,14 +136,27 @@ if (isset($_POST["crear"])) {
 
     });
 
-    $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
-        e.preventDefault();
+    const form = document.getElementById('form');
+    var idCompa = "parametro";
 
-        console.log($("#doc"));
-        console.log($("#doc")[0].files[0].name);
+    form.addEventListener('submit', (e) => {
 
+        let b = validar('ID');
         let a = validarFile($("#doc")[0].files[0]);
-                console.log(a);
+        console.log(a);
+
+        if (b === undefined && a == true) {
+            b = true;
+        } else if (!b || !a) {
+            e.preventDefault();
+        }
+    })
+
+
+
+    $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
+        //console.log($("#doc"));
+        //console.log($("#doc")[0].files[0].name);
 
 
         var doc = $("#doc").val();
@@ -163,10 +176,12 @@ if (isset($_POST["crear"])) {
                 console.log(datos["valor1"]);
 
                 let b = validar(response);
+                let a = validarFile($("#doc")[0].files[0]);
+                console.log(a);
 
                 if (b === undefined) {
                     b = true;
-                } else if (!b) {
+                } else if (!b || !a) {
                     e.preventDefault();
                 }
             }
