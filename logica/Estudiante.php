@@ -90,6 +90,7 @@ class Estudiante extends Persona
     function existeEstudiante()
     {
         $this->conexion->abrir();
+        echo "<br> Existe ? " . $this->estudianteDAO->existeEstudiante();
         $this->conexion->ejecutar($this->estudianteDAO->existeEstudiante());
         $resultado = $this->conexion->extraer();
         if ($this->conexion->numFilas() == 0) {
@@ -105,6 +106,7 @@ class Estudiante extends Persona
 
     function setProyecto($proy)
     {
+        echo "<br>" . $proy;
         $this->proyecto = $proy;
         $this->estudianteDAO->setProyecto($proy);
     }

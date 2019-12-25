@@ -130,7 +130,7 @@ if (isset($_POST["crear"])) {
 
         // this.files[0].size recupera el tamaño del archivo
         // alert(this.files[0].size);
-        console.log(this);
+        //console.log(this);
         validarFile(this.files[0]);
 
 
@@ -143,7 +143,7 @@ if (isset($_POST["crear"])) {
 
         let b = validar('ID');
         let a = validarFile($("#doc")[0].files[0]);
-        console.log(a);
+        //console.log(a);
 
         if (b === undefined && a == true) {
             b = true;
@@ -172,12 +172,13 @@ if (isset($_POST["crear"])) {
 
                 let datos = JSON.parse(response);
 
+                console.log(datos);
                 console.log(datos["valor"]);
                 console.log(datos["valor1"]);
 
                 let b = validar(response);
                 let a = validarFile($("#doc")[0].files[0]);
-                console.log(a);
+                //console.log(a);
 
                 if (b === undefined) {
                     b = true;
@@ -197,7 +198,7 @@ if (isset($_POST["crear"])) {
 
         $("#compa").keyup(function(e) {
             let id = $("#compa").val();
-            console.log($("#compa").val());
+            //console.log($("#compa").val());
 
             $.ajax({
                 url: "<?php echo "index.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") ?>",

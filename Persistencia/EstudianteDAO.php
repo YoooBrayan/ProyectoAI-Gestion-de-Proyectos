@@ -38,6 +38,7 @@ class EstudianteDAO{
     }
 
     function agregarEstudianteProyecto(){
+        
         return "update estudiante set proyecto = '". $this -> proyecto ."' where codigo = '". $this -> codigo ."'";
     }
 

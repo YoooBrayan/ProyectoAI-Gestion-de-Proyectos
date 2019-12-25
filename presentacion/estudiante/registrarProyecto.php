@@ -16,7 +16,7 @@ $compa = "";
 
 if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
-    $random = $_SESSION['id'] + rand(1, 100);
+    $random = date("jnYhis");
     $titulo = $_POST["titulo"];
     $plantamiento = $_POST["plantamiento"];
     $oGeneral = $_POST["oGeneral"];
@@ -52,9 +52,9 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
         $companero = new Estudiante($compa);
         if ($companero->existeEstudiante()) {
-            echo "Compa";
+            echo "<br>Compa";
 
-            $companero->setProyecto($proyecto);
+            $companero->setProyecto($proyecto->getId());
             $companero->agregarEstudianteProyecto();
         } else {
             $error = "nose";
