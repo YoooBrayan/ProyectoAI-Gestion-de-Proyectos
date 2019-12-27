@@ -90,7 +90,7 @@ class Estudiante extends Persona
     function existeEstudiante()
     {
         $this->conexion->abrir();
-        echo "<br> Existe ? " . $this->estudianteDAO->existeEstudiante();
+        //echo "<br> Existe ? " . $this->estudianteDAO->existeEstudiante();
         $this->conexion->ejecutar($this->estudianteDAO->existeEstudiante());
         $resultado = $this->conexion->extraer();
         if ($this->conexion->numFilas() == 0) {

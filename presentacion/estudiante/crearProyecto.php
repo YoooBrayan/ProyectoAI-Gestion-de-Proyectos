@@ -108,11 +108,6 @@ if (isset($_POST["crear"])) {
                                 <label style="color: red; display: none;" id="larchivo"> *Campo Obligatorio </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input type="number" id="compa" name="compa" class="col-4" placeholder="agregar compañero" value="<?php // echo $codigo; 
-                                                                                                                                ?>">
-                            <label id="nomCompa" style="display: inline;"></label>
-                        </div>
                         <button type="submit" id="boton" name="crear" class="btn btn-dark">Crear</button>
                         <a class="btn btn-dark " href="index.php?pid=<?php echo base64_encode('presentacion/estudiante/crearProyecto.php')
                                                                         ?>" role="button">Inicio</a>
@@ -126,6 +121,7 @@ if (isset($_POST["crear"])) {
 </div>
 
 <script type="text/javascript">
+
     $(document).on('change', 'input[type="file"]', function() {
 
         // this.files[0].size recupera el tamaño del archivo
@@ -136,82 +132,26 @@ if (isset($_POST["crear"])) {
 
     });
 
-    const form = document.getElementById('form');
-    var idCompa = "parametro";
-
-    form.addEventListener('submit', (e) => {
-
-        let b = validar('ID');
+    $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
+        let b = validarT();
         let a = validarFile($("#doc")[0].files[0]);
-        //console.log(a);
+        console.log("b: " + b);
+        console.log("a: " + a);
 
-        if (b === undefined && a == true) {
+        if (b === undefined) {
             b = true;
-        } else if (!b || !a) {
+        }
+        if (!b || !a) {
+            console.log("prevent");
             e.preventDefault();
         }
-    })
-
-
-
-    $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
         //console.log($("#doc"));
         //console.log($("#doc")[0].files[0].name);
-
-
-        var doc = $("#doc").val();
-        let idv = $("#compa").val();
-        $.ajax({
-            url: "<?php echo "indexAjax.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") ?>",
-            type: "POST",
-            data: {
-                id2: idv
-            },
-            success: function(response) {
-
-
-                let datos = JSON.parse(response);
-
-                console.log(datos);
-                console.log(datos["valor"]);
-                console.log(datos["valor1"]);
-
-                let b = validar(response);
-                let a = validarFile($("#doc")[0].files[0]);
-                //console.log(a);
-
-                if (b === undefined) {
-                    b = true;
-                } else if (!b || !a) {
-                    e.preventDefault();
-                }
-            }
-        })
     })
 
     $(document).ready(function() {
 
-        $(".editor").summernote({
-            //placeholder: 'Hello bootstrap 4',
-        });
-
-
-        $("#compa").keyup(function(e) {
-            let id = $("#compa").val();
-            //console.log($("#compa").val());
-
-            $.ajax({
-                url: "<?php echo "index.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") ?>",
-                type: "POST",
-                data: {
-                    id
-                },
-                success: function(response) {
-                    $("#nomCompa").html(response);
-                }
-            })
-        })
-
+        $(".editor").summernote({});
 
     });
 </script>

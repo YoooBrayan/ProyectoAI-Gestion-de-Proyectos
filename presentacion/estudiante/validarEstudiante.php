@@ -21,10 +21,8 @@ if(!empty($_POST['id2'])){
         'valor1' => $compa -> getNombre()
     );
 
-
     echo json_encode($json);
 }
-
 
 
 

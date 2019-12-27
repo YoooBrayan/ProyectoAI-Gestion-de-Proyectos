@@ -12,7 +12,6 @@ $oGeneral = "";
 $oEspecificos = "";
 $solucion = "";
 $documento = "";
-$compa = "";
 
 if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
@@ -22,7 +21,6 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
     $oGeneral = $_POST["oGeneral"];
     $oEspecificos = $_POST["oEspecificos"];
     $solucion = $_POST["solucion"];
-    $compa = $_POST["compa"];
 
     $doc = $_FILES['documento'];
     echo "Nombre : " . $doc["name"] . "<br>";
@@ -48,24 +46,11 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
         $estudiante->setProyecto($proyecto->getId());
         $estudiante->agregarEstudianteProyecto();
-
-
-        $companero = new Estudiante($compa);
-        if ($companero->existeEstudiante()) {
-            echo "<br>Compa";
-
-            $companero->setProyecto($proyecto->getId());
-            $companero->agregarEstudianteProyecto();
-        } else {
-            $error = "nose";
-        }
-        $error = "Nose1";
-        //header("Location: presentacion/estudiante/sesionEstudiante.php?pid=". $error);
+        header("Location: presentacion/estudiante/sesionEstudiante.php");
         //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&mensaje=".$error);
     } else {
-        $error = "Nose 2";
+        echo "Nose 2";
     }
-
     //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php")/* . "&mensaje=".$error*/);
 }
 
@@ -74,14 +59,6 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
 <script>
     $("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;");
-
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'Your work has been saved',
-  showConfirmButton: false,
-  timer: 1500
-})
 
     /*Swal.fire({
         title: 'Proyecto Creado',
