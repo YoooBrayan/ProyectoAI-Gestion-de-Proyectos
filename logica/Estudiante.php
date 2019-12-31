@@ -69,7 +69,6 @@ class Estudiante extends Persona
     function agregarEstudianteProyecto()
     {
         $this->conexion->abrir();
-        echo $this->estudianteDAO->agregarEstudianteProyecto();
         $this->conexion->ejecutar($this->estudianteDAO->agregarEstudianteProyecto());
         $this->conexion->cerrar();
     }
@@ -78,6 +77,19 @@ class Estudiante extends Persona
     {
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->estudianteDAO->existeCorreo());
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function validarProyecto()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->estudianteDAO->validarProyecto());
         if ($this->conexion->numFilas() == 0) {
             $this->conexion->cerrar();
             return false;

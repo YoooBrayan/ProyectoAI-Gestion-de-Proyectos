@@ -54,6 +54,10 @@ class EstudianteDAO{
         return "select codigo, concat_ws(' ', nombre, apellido) as nombre from estudiante where codigo = '" . $this -> codigo ."'";
     }
 
+    function existeProyecto(){
+        return "select proyecto from estudiante where codigo = '" . $this -> codigo ."'";
+    }
+
     function setProyecto($proyecto){
         $this -> proyecto = $proyecto;
     }

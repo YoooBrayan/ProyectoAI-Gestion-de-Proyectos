@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require 'logica/Persona.php';
 require 'logica/Administrador.php';
 require 'logica/Profesor.php';

@@ -1,6 +1,11 @@
 <?php
+
 $estudiante = new Estudiante($_SESSION['id']);
 $estudiante->consultar();
+$bool = $estudiante->validarProyecto();
+if ($bool) {
+    header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&b=no");
+}
 
 include 'presentacion/estudiante/cabeceraEstudiante.php';
 
@@ -108,6 +113,9 @@ if (isset($_POST["crear"])) {
                                 <label style="color: red; display: none;" id="larchivo"> *Campo Obligatorio </label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <a class="btn btn-dark " data-toggle="modal" data-target="#modalCompa" href="modalCompa.php" role="button">Agregar Estudiante</a>
+                        </div>
                         <button type="submit" id="boton" name="crear" class="btn btn-dark">Crear</button>
                         <a class="btn btn-dark " href="index.php?pid=<?php echo base64_encode('presentacion/estudiante/crearProyecto.php')
                                                                         ?>" role="button">Inicio</a>
@@ -120,34 +128,40 @@ if (isset($_POST["crear"])) {
 
 </div>
 
-<script type="text/javascript">
+<div class="modal fade" id="modalCompa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+</div>
 
+<script>
+    $('body').on('show.bs.modal', '.modal', function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-content").load(link.attr("href"));
+    });
+</script>
+
+
+<script type="text/javascript">
     $(document).on('change', 'input[type="file"]', function() {
 
         // this.files[0].size recupera el tamaño del archivo
-        // alert(this.files[0].size);
-        //console.log(this);
         validarFile(this.files[0]);
 
 
     });
 
-    $("form").on("click", "#boton", function(e) { //Esto hace lo mismo que lo de arriba
+    $("form").on("click", "#boton", function(e) {
         let b = validarT();
         let a = validarFile($("#doc")[0].files[0]);
-        console.log("b: " + b);
-        console.log("a: " + a);
 
         if (b === undefined) {
             b = true;
         }
         if (!b || !a) {
-            console.log("prevent");
             e.preventDefault();
         }
-        //console.log($("#doc"));
-        //console.log($("#doc")[0].files[0].name);
-    })
+    });
 
     $(document).ready(function() {
 

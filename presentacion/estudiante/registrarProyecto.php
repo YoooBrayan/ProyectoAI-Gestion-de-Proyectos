@@ -23,11 +23,11 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
     $solucion = $_POST["solucion"];
 
     $doc = $_FILES['documento'];
-    echo "Nombre : " . $doc["name"] . "<br>";
-    echo "size : " . $doc["size"] . "<br>";
+    //echo "Nombre : " . $doc["name"] . "<br>";
+    //echo "size : " . $doc["size"] . "<br>";
 
     if ($doc["size"] <= 25000) {
-        
+
 
         if (strpos($doc["type"], "pdf")) {
 
@@ -46,12 +46,20 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 
         $estudiante->setProyecto($proyecto->getId());
         $estudiante->agregarEstudianteProyecto();
-        header("Location: presentacion/estudiante/sesionEstudiante.php");
+
+        if ($_SESSION['idCC'] != "") {
+            $compa = new Estudiante($_SESSION['idCC']);
+            $compa->setProyecto($proyecto->getId());
+            $compa->agregarEstudianteProyecto();
+        } 
+
+        //header("Location: presentacion/estudiante/sesionEstudiante.php");
+        header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&b=true");
         //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&mensaje=".$error);
     } else {
         echo "Nose 2";
     }
-    //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php")/* . "&mensaje=".$error*/);
+    //header("Location: index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") . "&mensaje=".$error);
 }
 
 ?>
@@ -60,9 +68,11 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
 <script>
     $("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;");
 
+    
     /*Swal.fire({
         title: 'Proyecto Creado',
         text: 'Exitosamente!!!',
-        footer: '<a href="<?php // echo "index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") ?>">Inicio</a>'
+        footer: '<a href="<?php // echo "index.php?pid=" . base64_encode("presentacion/estudiante/sesionEstudiante.php") 
+                            ?>">Inicio</a>'
     })*/
 </script>
