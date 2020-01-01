@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+//session_start();
 
 if(isset($_POST['id'])){
  
@@ -17,13 +17,37 @@ if(isset($_POST['id'])){
 if(!empty($_POST['id2'])){
     $compa = new Estudiante($_POST['id2']);
     $valor = $compa -> existeEstudiante();
+    $proy = $compa -> validarProyecto();
 
-    if($valor){
+    if($valor && !$proy){
         $_SESSION['idCC'] = $_POST['id2'];
-        echo "fas fa-check";
-    }else{
+        $json = array(
+            'id' => $_SESSION['idCC'],
+            'icon' => "fas fa-check",
+            'mensaje' => "Estudiante valido!",
+            'color' => "#45ADC6"
+        );
+        echo json_encode($json);
+        //echo "fas fa-check";
+    }else if($valor && $proy){
         $_SESSION['idCC'] = "";
-        echo "fas fa-times";
+        $json = array(
+            'icon' => "fas fa-exclamation",
+            'mensaje' => "Estudiante registrado en otro proyecto!",
+            'color' => "#F4883D"
+        );
+        echo json_encode($json);
+        //echo "fas fa-exclamation";
+    }
+    else{
+        $_SESSION['idCC'] = "";
+        $json = array(
+            'icon' => "fas fa-times",
+            'mensaje' => "Estudiante no encontrado!",
+            'color' => "#FE2D18"
+        );
+        echo json_encode($json);
+        //echo "fas fa-times";
     }
 
     /*$json = array(
@@ -33,8 +57,3 @@ if(!empty($_POST['id2'])){
 
     echo json_encode($json);*/
 }
-
-
-
-?>
-

@@ -34,7 +34,7 @@ class EstudianteDAO{
 
     function registrar(){
         return "insert into estudiante(codigo, nombre, apellido, correo, clave) values
-                ('". $this-> codigo."', '". $this -> nombre."', '". $this-> apellidos ."', '". $this -> correo ."' , '". $this -> clave ."')";
+                ('". $this-> codigo."', '". $this -> nombre."', '". $this-> apellidos ."', '". $this -> correo ."' , sha1('". $this -> clave ."'))";
     }
 
     function agregarEstudianteProyecto(){

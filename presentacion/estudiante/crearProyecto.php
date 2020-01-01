@@ -115,6 +115,7 @@ if (isset($_POST["crear"])) {
                         </div>
                         <div class="form-group">
                             <a class="btn btn-dark " data-toggle="modal" data-target="#modalCompa" href="modalCompa.php" role="button">Agregar Estudiante</a>
+                            <label id="compa" style="display: none"></label>
                         </div>
                         <button type="submit" id="boton" name="crear" class="btn btn-dark">Crear</button>
                         <a class="btn btn-dark " href="index.php?pid=<?php echo base64_encode('presentacion/estudiante/crearProyecto.php')

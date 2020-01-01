@@ -18,6 +18,7 @@ session_start();
 				<input id="idCompa" type="text" name="correo" class="form-control" placeholder="Codigo" required="required">
 				<span id="estado" class="" style="font-size: 1.9em; padding: 5px; color: dodgerblue;"></span>
 			</div>
+			<label id="label" style="display: none;">Valido</label>
 		</div>
 
 		<div class="form-group">
@@ -40,8 +41,19 @@ session_start();
 				id2: idC
 			},
 			success: function(response) {
+				let datos = JSON.parse(response);
+				//console.log(datos['icon']);
 				$("#estado").removeClass();
-				$("#estado").addClass(response);	
+				$("#estado").addClass(datos['icon']);
+				let color = "#DE1F1F";
+				$("#label").html(datos['mensaje']);
+				$("#label").attr("style", "display: block; color:" + datos['color']);
+				if(datos['mensaje']=="Estudiante valido!"){
+					$("#compa").html(datos['id'])
+					$("#compa").attr("style", "display: inline; font-size: 132%; color:" + datos['color'])
+				}else{
+					$("#compa").attr("style", "display: none;")
+				}
 			}
 		});
 

@@ -17,7 +17,6 @@ if (isset($_GET['b'])) {
 
 <script>
     let b = '<?php echo $b; ?>';
-    console.log(b);
     if (b=="true") {
         Swal.fire({
             position: 'top-end',
@@ -30,7 +29,7 @@ if (isset($_GET['b'])) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'Usted ya tiene un proyecto registrado!',
         })
     }
 
