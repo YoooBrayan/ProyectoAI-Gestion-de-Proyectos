@@ -112,7 +112,7 @@ class Proyecto{
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> proyectoDAO -> estado());
         $resultado = $this -> conexion -> extraer();
-        $this -> estado = resultado[0];
+        $this -> estado = $resultado[0];
         $this -> conexion -> cerrar();
     }
 

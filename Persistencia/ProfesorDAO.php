@@ -20,7 +20,7 @@ class ProfesorDAO{
 
     function registrar(){
         return "insert into Profesor(idProfesor, nombre, apellido, correo, clave) values
-                ('". $this -> id ."', '". $this -> nombre ."', '". $this -> apellido ."', '". $this -> correo ."', '". $this -> clave ."')";
+                ('". $this -> id ."', '". $this -> nombre ."', '". $this -> apellido ."', '". $this -> correo ."', sha1('". $this -> clave ."'))";
     }
 
     function autenticar(){
