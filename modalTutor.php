@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 ?>
 
@@ -12,25 +12,34 @@ session_start();
 </div>
 <div class="modal-body">
 
-    <form>
         <div class="form-group">
             <div class="input-group">
-                <input id="idTutor" type="text" name="correo" class="form-control" placeholder="Codigo" required="required">
+                <label style="font-size: 1.2em;">Seleccione Tutor:</label>
+                <select class="custom-select" style="margin-left: 5px;">
+                <?php 
+                foreach ($estudiantes as $e) {
+                    ?>
+                    <option><?php  ?></option>
+                <?php } ?>
+                </select>
+
+                <!---<input id="idTutor" type="text" name="correo" class="form-control" placeholder="Codigo" required="required">
                 <span id="estado" class="" style="font-size: 1.9em; padding: 5px; color: dodgerblue;"></span>
             </div>
-            <label id="label" style="display: none;">Valido</label>
+            <label id="label" style="display: none;">Valido</label>-->
         </div>
 
-    </form>
 </div>
 
 <script>
-    $("#idTutor").keyup(function(e) {
+    /*$("#idTutor").keyup(function(e) {
         let idT = $("#idTutor").val();
-        let idE = '<?php echo $_GET['idE']; ?>'
+        let idE = '<?php // echo $_GET['idE']; 
+                    ?>'
 
         $.ajax({
-            url: "<?php echo "indexAjax.php?pid=" . base64_encode("presentacion/profesor/validar.php") ?>",
+            url: "<?php // echo "indexAjax.php?pid=" . base64_encode("presentacion/profesor/validar.php") 
+                    ?>",
             type: "POST",
             data: {
                 idT, idE
@@ -40,7 +49,7 @@ session_start();
                 $("#label").attr("style", "display: inline;");
             }
         })
-    })
+    })*/
 
 
     /*$("form").on("click", "#buscar", function(e) {
@@ -50,7 +59,8 @@ session_start();
 
         $.ajax({
             type: "POST",
-            url: "<?php // echo "indexAjax.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") ?>",
+            url: "<?php // echo "indexAjax.php?pid=" . base64_encode("presentacion/estudiante/validarEstudiante.php") 
+                    ?>",
             data: {
                 id2: idC
             },

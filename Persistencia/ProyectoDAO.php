@@ -67,7 +67,7 @@ class ProyectoDAO{
 
     function consultarTutores($tutor){
         //echo "<br>Proyecto: " . $this->id . "<br>";
-        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."')) and idProfesor = '". $tutor ."'";
+        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."'))";
     }
 
     function consultarJurados(){

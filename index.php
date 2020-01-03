@@ -2,7 +2,7 @@
 session_start();
 require 'logica/Persona.php';
 require 'logica/Administrador.php';
-require 'logica/Profesor.php';
+require_once 'logica/Profesor.php';
 require 'logica/Estudiante.php';
 require_once 'logica/Proyecto.php';
 
@@ -52,6 +52,13 @@ static $fotos = '/IPSUD_Yo/fotos/';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <link rel="stylesheet" href="css/buscador.css">
 
 
 </head>

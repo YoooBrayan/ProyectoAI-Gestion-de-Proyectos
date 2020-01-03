@@ -2,6 +2,7 @@
 
 require_once 'persistencia/Conexion.php';
 require_once 'persistencia/ProyectoDAO.php';
+require_once 'Profesor.php';
 
 class Proyecto{
 
