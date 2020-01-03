@@ -26,8 +26,8 @@ class Proyecto{
         $this -> objetivoEspecifico = $objetivoEspecifico;
         $this -> solucionTecnologica = $solucionTecnologica;
         $this -> documento = $documento;
-        $this -> tutor = $tutor;
-        $this -> jurado = $jurado;
+        $this -> tutor = new Profesor();
+        $this -> jurado = new Profesor();
         $this -> estado = $estado;
         $this -> random = $random;
         $this -> conexion = new Conexion();
@@ -171,5 +171,30 @@ class Proyecto{
 
     function getEstado(){
         return $this->estado;
+    }
+
+    function consultarTutores($tutor){
+        $this->conexion->abrir();
+        //echo "<br>IDParametro" . $this->id . "<br>";
+        $this->conexion->ejecutar($this->proyectoDAO->consultarTutores($tutor));
+        $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+            $this->tutor->setId($resultado[0]);
+            $this->tutor->setNombre($resultado[1]);
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function getTutor(){
+        return $this->tutor;
+    }
+
+    function setId($id){
+        $this->id = $id;
+        $this->proyectoDAO->setId($id);
     }
 }

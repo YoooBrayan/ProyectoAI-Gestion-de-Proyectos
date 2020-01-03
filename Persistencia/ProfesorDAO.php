@@ -34,6 +34,18 @@ class ProfesorDAO{
     function existeCorreo(){
         return "select idProfesor from profesor where correo = '" . $this -> correo ."'";
     }
+
+    function setId($id){
+        $this->id = $id;
+    }
+
+    function getId(){
+        return $this->id;
+    }
+
+    function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
 }
 
 ?>

@@ -2,7 +2,7 @@
 
 require_once 'persistencia/Conexion.php';
 require 'persistencia/EstudianteDAO.php';
-require 'Proyecto.php';
+require_once 'Proyecto.php';
 
 class Estudiante extends Persona
 {
@@ -11,8 +11,8 @@ class Estudiante extends Persona
     private $conexion;
     private $estudianteDAO;
 
-    function Estudiante($codigo = "", $nombre = "", $apellido = "", $correo = "", $clave = "", $proyecto="")
-    {   
+    function Estudiante($codigo = "", $nombre = "", $apellido = "", $correo = "", $clave = "", $proyecto = "")
+    {
         $this->proyecto = new proyecto();
         $this->Persona($codigo, $nombre, $apellido, $correo, $clave);
         $this->conexion = new Conexion();
@@ -119,7 +119,7 @@ class Estudiante extends Persona
 
     function setProyecto($proy)
     {
-        echo "<br>" . $proy;
+        //echo "<br>" . $proy;
         $this->proyecto = $proy;
         $this->estudianteDAO->setProyecto($proy);
     }
@@ -145,7 +145,24 @@ class Estudiante extends Persona
         }
     }
 
-    function getProyecto(){
+    function existeProyecto()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->estudianteDAO->existeProyecto());
+        $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+
+            $this->proyecto->setId($resultado[0]);
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function getProyecto()
+    {
         return $this->proyecto;
     }
 }

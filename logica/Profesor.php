@@ -61,6 +61,14 @@ class Profesor extends Persona{
             return true;            
         }
     }
+
+    function setId($id){
+        $this->id = $id;
+    }
+
+    function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
 }
 
 ?>

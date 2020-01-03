@@ -49,7 +49,8 @@ $administrador->consultar();
 <script>
     $(document).ready(function() {
 
-        //console.log($("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;"));
+        $("body").attr("style", "background-image: url(img/fondo1111.jpg); background-size: 100% 100%; background-attachment: fixed;");
+        
 
         if ($('#info').text().length > 17) {
             let nv = $("#info").text().substr(0, 17);
