@@ -1,7 +1,7 @@
 <?php
 
 require_once 'persistencia/Conexion.php';
-require 'persistencia/ProyectoDAO.php';
+require_once 'persistencia/ProyectoDAO.php';
 
 class Proyecto{
 
@@ -18,7 +18,7 @@ class Proyecto{
     private $conexion;
     private $proyectoDAO;
 
-    function Proyecto($id="", $titulo="", $plantamiento="", $objetivoGeneral="", $objetivoEspecifico="", $solucionTecnologica="", $documento="", $tutor="", $jurado="", $estado="", $random){
+    function Proyecto($id="", $titulo="", $plantamiento="", $objetivoGeneral="", $objetivoEspecifico="", $solucionTecnologica="", $documento="", $tutor="", $jurado="", $estado="", $random=""){
         $this -> id = $id;
         $this -> titulo = $titulo;
         $this -> plantamiento = $plantamiento;
@@ -120,6 +120,56 @@ class Proyecto{
     function getId(){
         return $this -> id;
     }
-}
 
-?>
+    function mensaje(){
+        return "Mensaje";
+    }
+
+    function setTitulo($titulo){
+        $this->titulo = $titulo;
+    }
+
+    function setPlantamiento($plantamiento){
+        $this->plantamiento = $plantamiento;
+    }
+
+    function setObjGeneral($objGeneral){
+        $this->objetivoGeneral = $objGeneral;
+    }
+
+    function setObjetivoEspecificos($objetivoEspecifico){
+        $this->objetivoEspecifico = $objetivoEspecifico;
+    }
+
+    function setSolucionTecnologica($solucionTecnologica){
+        $this->solucionTecnologica = $solucionTecnologica;
+    }
+
+    function getTitulo(){
+        return $this->titulo;
+    }
+
+    function getPlantamiento(){
+        return $this->plantamiento;
+    }
+
+    function getObjGeneral(){
+        return $this->objetivoGeneral;
+    }
+
+    function getObjEspecificos(){
+        return $this->objetivoEspecifico;
+    }
+
+    function getSolucionTecnologica(){
+        return $this->solucionTecnologica;
+    }
+
+    function setEstado($estado){
+        $this->estado = $estado;
+    }
+
+    function getEstado(){
+        return $this->estado;
+    }
+}

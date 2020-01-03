@@ -2,6 +2,7 @@
 
 require_once 'persistencia/Conexion.php';
 require 'persistencia/EstudianteDAO.php';
+require 'Proyecto.php';
 
 class Estudiante extends Persona
 {
@@ -10,12 +11,12 @@ class Estudiante extends Persona
     private $conexion;
     private $estudianteDAO;
 
-    function Estudiante($codigo = "", $nombre = "", $apellido = "", $correo = "", $clave = "", $proyecto = "")
-    {
+    function Estudiante($codigo = "", $nombre = "", $apellido = "", $correo = "", $clave = "", $proyecto="")
+    {   
+        $this->proyecto = new proyecto();
         $this->Persona($codigo, $nombre, $apellido, $correo, $clave);
-        $this->proyecto = $proyecto;
         $this->conexion = new Conexion();
-        $this->estudianteDAO = new EstudianteDAO($codigo, $nombre, $apellido, $correo, $clave, $proyecto);
+        $this->estudianteDAO = new EstudianteDAO($codigo, $nombre, $apellido, $correo, $clave);
     }
 
     function autenticar()
@@ -121,5 +122,30 @@ class Estudiante extends Persona
         echo "<br>" . $proy;
         $this->proyecto = $proy;
         $this->estudianteDAO->setProyecto($proy);
+    }
+
+    function consultarProyectoEstudiante()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->estudianteDAO->consultarProyectoEstudiante());
+        $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+
+            $this->proyecto->setTitulo($resultado[0]);
+            $this->proyecto->setPlantamiento($resultado[1]);
+            $this->proyecto->setObjGeneral($resultado[2]);
+            $this->proyecto->setObjetivoEspecificos($resultado[3]);
+            $this->proyecto->setSolucionTecnologica($resultado[4]);
+            $this->proyecto->setEstado($resultado[5]);
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function getProyecto(){
+        return $this->proyecto;
     }
 }

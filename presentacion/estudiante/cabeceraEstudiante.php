@@ -23,7 +23,7 @@ $estudiante -> consultar();
             <a href="#">Proyecto</a>
             <ul style="left: 0px;">
                 <li><a style="text-align: left;" href="index.php?pid=<?php echo base64_encode("presentacion/estudiante/crearProyecto.php") ?>">Nuevo Proyecto</a></li>
-                <li><a style="text-align: left;" href="index.php?pid=<?php echo base64_encode("Presentacion/Profesor/consultarProfesor.php") ?>">Ver Proyecto</a></li>
+                <li><a style="text-align: left;" href="modalProyecto.php?id=<?php echo $_SESSION['id']; ?>" data-toggle="modal" data-target="#modalProyecto">Ver Proyecto</a></li>
             </ul>
         </li>
         <li>
@@ -65,4 +65,17 @@ $estudiante -> consultar();
         })
 
     })
+</script>
+
+<div class="modal fade" id="modalProyecto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+	$('body').on('show.bs.modal', '.modal', function (e) {
+		var link = $(e.relatedTarget);
+		$(this).find(".modal-content").load(link.attr("href"));
+	});
 </script>
