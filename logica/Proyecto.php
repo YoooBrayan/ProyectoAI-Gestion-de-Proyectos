@@ -174,20 +174,18 @@ class Proyecto{
         return $this->estado;
     }
 
-    function consultarTutores($tutor){
+    function consultarTutores(){
         $this->conexion->abrir();
         //echo "<br>IDParametro" . $this->id . "<br>";
-        $this->conexion->ejecutar($this->proyectoDAO->consultarTutores($tutor));
-        $resultado = $this->conexion->extraer();
-        if ($this->conexion->numFilas() == 0) {
-            $this->conexion->cerrar();
-            return false;
-        } else {
-            $this->tutor->setId($resultado[0]);
-            $this->tutor->setNombre($resultado[1]);
-            $this->conexion->cerrar();
-            return true;
+        $this->conexion->ejecutar($this->proyectoDAO->consultarTutores());
+        $resultados = array();
+        $i=0;
+        while(($registro = $this -> conexion -> extraer()) != null){
+            $resultados[$i] = new Profesor($registro[0], $registro[1]);
+            $i++;
         }
+        $this -> conexion -> cerrar();
+        return $resultados;
     }
 
     function getTutor(){

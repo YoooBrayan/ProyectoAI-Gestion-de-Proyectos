@@ -65,9 +65,14 @@ class ProyectoDAO{
         return "select idProyecto from proyecto where random = '". $this -> random ."'";
     }
 
-    function consultarTutores($tutor){
+    function consultarTutores(){
         //echo "<br>Proyecto: " . $this->id . "<br>";
         return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."'))";
+    }
+
+    function verificarTutor($tutor){
+        //echo "<br>Proyecto: " . $this->id . "<br>";
+        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."')) and idProfesor = '" . $tutor ."'";
     }
 
     function consultarJurados(){
@@ -78,5 +83,3 @@ class ProyectoDAO{
         $this->id = $id;
     }
 }
-
-?>
