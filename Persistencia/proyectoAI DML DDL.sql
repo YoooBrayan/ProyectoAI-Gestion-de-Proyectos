@@ -98,6 +98,39 @@ BEGIN
   return idTutor;
 END//
 
+create FUNCTION verificarTutor(id int)
+RETURNS INT
+BEGIN
+
+    DECLARE idTutor int;
+
+    select tutor into idTutor from proyecto where idproyecto = id;
+
+    if idTutor is null then 
+    set idTutor = 0;
+    end if;
+
+    return idTutor;
+
+end//
+
+create FUNCTION verificarJurado(id int)
+RETURNS INT
+BEGIN
+
+    DECLARE idJurado int;
+
+    select jurado into idJurado from proyecto where idproyecto = id;
+
+    if idJurado is null then 
+    set idJurado = 0;
+    end if;
+
+    return idJurado;
+
+end//
+
+
 
 /* Tutores disponibles */
 select idProfesor from profesor where idProfesor  not in (select consultarJurados(435))//

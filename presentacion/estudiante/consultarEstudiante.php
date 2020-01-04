@@ -41,8 +41,8 @@ include 'presentacion/cabeceraAdministrador.php';
 		echo "<td>" . $e->getCorreo() . "</td>";
 		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getId() . "'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
 		echo "<td id='cambiarEstados'>" . 
-		"<a href='modalTutor.php?idE=" . $e->getId() . "' data-toggle='modal' data-target='#modalTutor' ><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Tutor' ></span> </a>
-                       <a class='fas fa-user-edit' href='index.php?pid=" . base64_encode("presentacion/paciente/actualizarPaciente.php") . "&idPaciente=" . $e->getId() . "' data-toggle='tooltip' data-placement='left' title='Asignar Jurado'> </a>
+		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Tutor' ></span> </a>
+         <a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=jurado' data-toggle='modal' data-target='#modalAsignar'><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Jurado' ></span> </a>
               </td>";
         echo "</tr>";
     
@@ -64,7 +64,7 @@ include 'presentacion/cabeceraAdministrador.php';
     </div>
 </div>
 
-<div class="modal fade" id="modalTutor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAsignar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content" id="modalContent"></div>
     </div>

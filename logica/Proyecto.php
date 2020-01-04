@@ -4,7 +4,8 @@ require_once 'persistencia/Conexion.php';
 require_once 'persistencia/ProyectoDAO.php';
 require_once 'Profesor.php';
 
-class Proyecto{
+class Proyecto
+{
 
     private $id;
     private $titulo;
@@ -19,180 +20,267 @@ class Proyecto{
     private $conexion;
     private $proyectoDAO;
 
-    function Proyecto($id="", $titulo="", $plantamiento="", $objetivoGeneral="", $objetivoEspecifico="", $solucionTecnologica="", $documento="", $tutor="", $jurado="", $estado="", $random=""){
-        $this -> id = $id;
-        $this -> titulo = $titulo;
-        $this -> plantamiento = $plantamiento;
-        $this -> objetivoGeneral = $objetivoGeneral;
-        $this -> objetivoEspecifico = $objetivoEspecifico;
-        $this -> solucionTecnologica = $solucionTecnologica;
-        $this -> documento = $documento;
-        $this -> tutor = new Profesor();
-        $this -> jurado = new Profesor();
-        $this -> estado = $estado;
-        $this -> random = $random;
-        $this -> conexion = new Conexion();
-        $this -> proyectoDAO = new ProyectoDAO($id, $titulo, $plantamiento, $objetivoGeneral, $objetivoEspecifico, $solucionTecnologica, $documento, $tutor, $jurado, $estado, $random);
+    function Proyecto($id = "", $titulo = "", $plantamiento = "", $objetivoGeneral = "", $objetivoEspecifico = "", $solucionTecnologica = "", $documento = "", $tutor = "", $jurado = "", $estado = "", $random = "")
+    {
+        $this->id = $id;
+        $this->titulo = $titulo;
+        $this->plantamiento = $plantamiento;
+        $this->objetivoGeneral = $objetivoGeneral;
+        $this->objetivoEspecifico = $objetivoEspecifico;
+        $this->solucionTecnologica = $solucionTecnologica;
+        $this->documento = $documento;
+        $this->tutor = new Profesor();
+        $this->jurado = new Profesor();
+        $this->estado = $estado;
+        $this->random = $random;
+        $this->conexion = new Conexion();
+        $this->proyectoDAO = new ProyectoDAO($id, $titulo, $plantamiento, $objetivoGeneral, $objetivoEspecifico, $solucionTecnologica, $documento, $tutor, $jurado, $estado, $random);
     }
 
-    function crear(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> crear());
-        $this -> conexion -> cerrar();
+    function crear()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->crear());
+        $this->conexion->cerrar();
     }
 
-    function consultar(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> consultar());
-        $resultado = $this -> conexion -> extraer();
-        $this-> titulo = $resultado[0];
-        $this-> plantamiento = $resultado[1];
-        $this-> objetivoGeneral = $resultado[2];
-        $this-> objetivoEspecifico = $resultado[3];
-        $this-> solucionTecnologica = $resultado[4];
-        $this-> documento = $resultado[5];
-        $this-> tutor = $resultado[6];
-        $this-> jurado = $resultado[7];
-        $this-> estado = $resultado[8];
-        $this -> conexion -> cerrar();
+    function consultar()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->consultar());
+        $resultado = $this->conexion->extraer();
+        $this->titulo = $resultado[0];
+        $this->plantamiento = $resultado[1];
+        $this->objetivoGeneral = $resultado[2];
+        $this->objetivoEspecifico = $resultado[3];
+        $this->solucionTecnologica = $resultado[4];
+        $this->documento = $resultado[5];
+        $this->tutor = $resultado[6];
+        $this->jurado = $resultado[7];
+        $this->estado = $resultado[8];
+        $this->conexion->cerrar();
     }
 
-    function obtenerId(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> obtenerId());
-        $resultado = $this -> conexion -> extraer();
-        $this-> id = $resultado[0];
-        $this -> conexion -> cerrar();
+    function obtenerId()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->obtenerId());
+        $resultado = $this->conexion->extraer();
+        $this->id = $resultado[0];
+        $this->conexion->cerrar();
     }
 
-    function actualizarTutor(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> actualizarTutor());
-        $this -> conexion -> cerrar();
+    function actualizarTutor()
+    {
+        $this->conexion->abrir();
+        //echo $this->proyectoDAO->actualizarTutor();
+        $this->conexion->ejecutar($this->proyectoDAO->actualizarTutor());
+        $this->conexion->cerrar();
     }
 
-    function actualizarJurado(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> actualizarJurado());
-        $this -> conexion -> cerrar();
+    function actualizarJurado()
+    {
+        $this->conexion->abrir();
+        //echo $this->proyectoDAO->actualizarJurado();
+        $this->conexion->ejecutar($this->proyectoDAO->actualizarJurado());
+        $this->conexion->cerrar();
     }
 
-    function actualizarEstado(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> actualizarEstado());
-        $this -> conexion -> cerrar();
+    function actualizarEstado()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->actualizarEstado());
+        $this->conexion->cerrar();
     }
 
-    function consultarProyectosTutor(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> consultarProyectosTutor());
+    function consultarProyectosTutor()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->consultarProyectosTutor());
         $resultados = array();
-        $i=0;
-        while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Proyecto($resultados[0], $resultados[1]);
+        $i = 0;
+        while (($registro = $this->conexion->extraer()) != null) {
+            $resultados[$i] = new Proyecto($registro[0], $registro[1]);
             $i++;
         }
-        $this -> conexion -> cerrar();
+        $this->conexion->cerrar();
         return $resultados;
     }
 
-    function consultarProyectosJurado(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> consultarProyectosJurado());
+    function consultarProyectosJurado()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->consultarProyectosJurado());
         $resultados = array();
-        $i=0;
-        while(($registro = $this -> conexion -> extraer()) != null){
-            $resultados[$i] = new Proyecto($resultados[0], $resultados[1]);
+        $i = 0;
+        while (($registro = $this->conexion->extraer()) != null) {
+            $resultados[$i] = new Proyecto($registro[0], $registro[1]);
             $i++;
         }
-        $this -> conexion -> cerrar();
+        $this->conexion->cerrar();
         return $resultados;
     }
 
-    function estado(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> proyectoDAO -> estado());
-        $resultado = $this -> conexion -> extraer();
-        $this -> estado = $resultado[0];
-        $this -> conexion -> cerrar();
+    function estado()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->estado());
+        $resultado = $this->conexion->extraer();
+        $this->estado = $resultado[0];
+        $this->conexion->cerrar();
     }
 
 
-    function getId(){
-        return $this -> id;
+    function getId()
+    {
+        return $this->id;
     }
 
-    function mensaje(){
+    function mensaje()
+    {
         return "Mensaje";
     }
 
-    function setTitulo($titulo){
+    function setTitulo($titulo)
+    {
         $this->titulo = $titulo;
     }
 
-    function setPlantamiento($plantamiento){
+    function setPlantamiento($plantamiento)
+    {
         $this->plantamiento = $plantamiento;
     }
 
-    function setObjGeneral($objGeneral){
+    function setObjGeneral($objGeneral)
+    {
         $this->objetivoGeneral = $objGeneral;
     }
 
-    function setObjetivoEspecificos($objetivoEspecifico){
+    function setObjetivoEspecificos($objetivoEspecifico)
+    {
         $this->objetivoEspecifico = $objetivoEspecifico;
     }
 
-    function setSolucionTecnologica($solucionTecnologica){
+    function setSolucionTecnologica($solucionTecnologica)
+    {
         $this->solucionTecnologica = $solucionTecnologica;
     }
 
-    function getTitulo(){
+    function getTitulo()
+    {
         return $this->titulo;
     }
 
-    function getPlantamiento(){
+    function getPlantamiento()
+    {
         return $this->plantamiento;
     }
 
-    function getObjGeneral(){
+    function getObjGeneral()
+    {
         return $this->objetivoGeneral;
     }
 
-    function getObjEspecificos(){
+    function getObjEspecificos()
+    {
         return $this->objetivoEspecifico;
     }
 
-    function getSolucionTecnologica(){
+    function getSolucionTecnologica()
+    {
         return $this->solucionTecnologica;
     }
 
-    function setEstado($estado){
+    function setEstado($estado)
+    {
         $this->estado = $estado;
     }
 
-    function getEstado(){
+    function getEstado()
+    {
         return $this->estado;
     }
 
-    function consultarTutores(){
+    function consultarTutores()
+    {
         $this->conexion->abrir();
         //echo "<br>IDParametro" . $this->id . "<br>";
         $this->conexion->ejecutar($this->proyectoDAO->consultarTutores());
         $resultados = array();
-        $i=0;
-        while(($registro = $this -> conexion -> extraer()) != null){
+        $i = 0;
+        while (($registro = $this->conexion->extraer()) != null) {
             $resultados[$i] = new Profesor($registro[0], $registro[1]);
             $i++;
         }
-        $this -> conexion -> cerrar();
+        $this->conexion->cerrar();
         return $resultados;
     }
 
-    function getTutor(){
+    function verificarTutor($tutor)
+    {
+        $this->conexion->abrir();
+        //echo $this->proyectoDAO->verificarTutor($tutor) . "<br>";
+        $this->conexion->ejecutar($this->proyectoDAO->verificarTutor($tutor));
+        $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+
+            $this->tutor->setId($resultado[0]);
+            $this->proyectoDAO->setTutor($resultado[0]);
+            $this->tutor->setNombre($resultado[1]);
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function getTutor()
+    {
         return $this->tutor;
     }
 
-    function setId($id){
+    function consultarJurados()
+    {
+        $this->conexion->abrir();
+        //echo "<br>IDParametro" . $this->id . "<br>";
+        $this->conexion->ejecutar($this->proyectoDAO->consultarJurados());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this->conexion->extraer()) != null) {
+            $resultados[$i] = new Profesor($registro[0], $registro[1]);
+            $i++;
+        }
+        $this->conexion->cerrar();
+        return $resultados;
+    }
+
+    function verificarJurado($jurado)
+    {
+        $this->conexion->abrir();
+        //echo $this->proyectoDAO->verificarTutor($tutor) . "<br>";
+        $this->conexion->ejecutar($this->proyectoDAO->verificarJurado($jurado));
+        $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
+
+            $this->jurado->setId($resultado[0]);
+            $this->proyectoDAO->setJurado($resultado[0]);
+            $this->jurado->setNombre($resultado[1]);
+            $this->conexion->cerrar();
+            return true;
+        }
+    }
+
+    function getJurado()
+    {
+        return $this->jurado;
+    }
+
+    function setId($id)
+    {
         $this->id = $id;
         $this->proyectoDAO->setId($id);
     }

@@ -3,15 +3,21 @@
 if(isset($_POST['idT'])){
 
     $estudiante = new Estudiante($_POST['idE']);
-    //$bool = $estudiante->existeEstudiante();
-/*    if($estudiante->existeProyecto()){
-        //echo "<br>idProyecto: " . $estudiante->getProyecto()->getId(). "<br>";
-        $estudiante->getProyecto()->consultarTutores($_POST['idT']);
-        echo $estudiante->getProyecto()->getTutor()->getNombre();
-    }*/
+    if($estudiante->existeEstudiante()){
+        $estudiante->existeProyecto();
+        if($_POST['tipo']=="tutor"){
+            if($estudiante->getProyecto()->verificarTutor($_POST['idT'])){
+                $estudiante->getProyecto()->actualizarTutor();
+                echo "ActualizadoT";
+            }
+        }else if($_POST['tipo']=="jurado"){
+            if($estudiante->getProyecto()->verificarJurado($_POST['idT'])){
+                $estudiante->getProyecto()->actualizarJurado();
+                echo "ActualizadoJ";
+            }
+        }
+        
+    }
 
-    echo $estudiante -> getId();
 
 }
-
-?>

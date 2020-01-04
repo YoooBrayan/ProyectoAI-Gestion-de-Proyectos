@@ -67,7 +67,7 @@ class ProyectoDAO{
 
     function consultarTutores(){
         //echo "<br>Proyecto: " . $this->id . "<br>";
-        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."'))";
+        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarTutores('". $this->id ."')) and idProfesor not in (select verificarTutor('". $this->id ."'))";
     }
 
     function verificarTutor($tutor){
@@ -76,10 +76,23 @@ class ProyectoDAO{
     }
 
     function consultarJurados(){
-        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarJurados('". $this->id ."')) and idProfesor = '". $this->jurado ."'";
+        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarJurados('". $this->id ."')) and idProfesor not in (select verificarJurado('". $this->id ."'))";
+    }
+
+    function verificarJurado($jurado){
+        //echo "<br>Proyecto: " . $this->id . "<br>";
+        return "select idProfesor, concat_ws(' ', nombre, apellido) as Nombre from profesor where idProfesor  not in (select consultarJurados('". $this->id ."')) and idProfesor = '" . $jurado ."'";
     }
 
     function setId($id){
         $this->id = $id;
+    }
+
+    function setTutor($tutor){
+        $this->tutor = $tutor;
+    }
+
+    function setJurado($jurado){
+        $this->jurado = $jurado;
     }
 }
