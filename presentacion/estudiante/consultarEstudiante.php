@@ -39,8 +39,8 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $e->getNombre() . "</td>";
         echo "<td>" . $e->getApellido() . "</td>";
 		echo "<td>" . $e->getCorreo() . "</td>";
-		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getId() . "'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
-		echo "<td id='cambiarEstados'>" . 
+		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
+		echo "<td>" . 
 		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Tutor' ></span> </a>
          <a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=jurado' data-toggle='modal' data-target='#modalAsignar'><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Jurado' ></span> </a>
               </td>";

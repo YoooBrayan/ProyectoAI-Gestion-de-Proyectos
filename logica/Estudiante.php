@@ -42,7 +42,7 @@ class Estudiante extends Persona
         $this->nombre = $resultado[0];
         $this->apellido = $resultado[1];
         $this->correo = $resultado[2];
-        $this->proyecto = $resultado[3];
+        $this->proyecto->setId($resultado[3]);
         $this->conexion->cerrar();
     }
 
@@ -53,7 +53,8 @@ class Estudiante extends Persona
         $resultados = array();
         $i = 0;
         while (($registro = $this->conexion->extraer()) != null) {
-            $resultados[$i] = new Estudiante($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
+            $resultados[$i] = new Estudiante($registro[0], $registro[1], $registro[2], $registro[3]);
+            $resultados[$i]->getProyecto()->setId($registro[4]);
             $i++;
         }
         $this->conexion->cerrar();

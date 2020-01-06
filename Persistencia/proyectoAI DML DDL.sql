@@ -137,3 +137,24 @@ select idProfesor from profesor where idProfesor  not in (select consultarJurado
 
 /* Jurados disponibles */
 select idProfesor from profesor where idProfesor  not in (select tutores(434))//
+
+
+create function tutor(id int)
+returns text
+begin
+	declare tutor text;
+	select nombre into tutor from profesor p inner join proyecto pr on p.idprofesor = pr.tutor and pr.idproyecto = id;
+	return tutor;
+
+end//
+
+create function jurado(id int)
+returns text
+begin
+	declare jurado text;
+	select nombre into jurado from profesor p inner join proyecto pr on p.idprofesor = pr.jurado and pr.idproyecto = id;
+	return jurado;
+
+end//
+
+select titulo, plantamiento, objetivoGeneral, objetivosEspecificos, solucionTecnologica, descripcion, tutor(439), jurado(439), documento from Proyecto p inner join estudiante e on p.idProyecto = e.proyecto inner join estado es on p.estado = es.idEstado where idproyecto = 439 limit 1;

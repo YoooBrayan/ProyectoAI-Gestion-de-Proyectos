@@ -33,8 +33,7 @@ class ProyectoDAO{
     }
 
     function consultar(){
-        return "select titulo, plantamiento, objetivoGeneral, objetivoEspecifico, solucionTecnologica,            documento, Profesor.Nombre.tutor, Profesor.nombre, estado from Proyecto, profesor
-                where idProfesor = tutor and idProfesor = jurado and idProyecto = '". $this ->  id ."'";
+        return "select titulo, plantamiento, objetivoGeneral, objetivosEspecificos, solucionTecnologica, descripcion, tutor('". $this-> id ."'), jurado('". $this->id ."'), documento from Proyecto p inner join estudiante e on p.idProyecto = e.proyecto inner join estado es on p.estado = es.idEstado where idproyecto = '". $this->id ."' limit 1;";
     }
 
     function actualizarTutor(){

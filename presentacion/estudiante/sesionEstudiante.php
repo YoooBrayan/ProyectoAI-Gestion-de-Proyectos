@@ -32,6 +32,10 @@ if (isset($_GET['b'])) {
             title: 'Oops...',
             text: 'Usted ya tiene un proyecto registrado!',
         })
+
+        let url = window.location.href;//obtiene la url actual.
+        let urlc = url.substr(0, url.length-6); //acorta la url quitandole los 6 ultimos catacteres.
+        window.history.replaceState('', '', urlc); //remplaza la url con la url acortada
     }
 
     $(document.body).on("keydown", this, function(event) {

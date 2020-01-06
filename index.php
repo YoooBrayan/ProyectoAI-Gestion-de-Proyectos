@@ -58,7 +58,7 @@ static $fotos = '/IPSUD_Yo/fotos/';
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-    <link rel="stylesheet" href="css/buscador.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
 
 
 </head>

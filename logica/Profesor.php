@@ -37,6 +37,17 @@ class Profesor extends Persona{
         $this -> conexion -> cerrar();
     }
 
+    function consultar()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->profesorDAO->consultar());
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
+        $this->apellido = $resultado[1];
+        $this->correo = $resultado[2];
+        $this->conexion->cerrar();
+    }
+
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> profesorDAO -> consultarTodos());

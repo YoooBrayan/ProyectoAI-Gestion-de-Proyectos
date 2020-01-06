@@ -49,16 +49,22 @@ class Proyecto
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->proyectoDAO->consultar());
         $resultado = $this->conexion->extraer();
+        if ($this->conexion->numFilas() == 0) {
+            $this->conexion->cerrar();
+            return false;
+        } else {
         $this->titulo = $resultado[0];
         $this->plantamiento = $resultado[1];
         $this->objetivoGeneral = $resultado[2];
         $this->objetivoEspecifico = $resultado[3];
         $this->solucionTecnologica = $resultado[4];
-        $this->documento = $resultado[5];
+        $this->estado = $resultado[5];
         $this->tutor = $resultado[6];
         $this->jurado = $resultado[7];
-        $this->estado = $resultado[8];
+        $this->documento = $resultado[8];
         $this->conexion->cerrar();
+        return true;
+        }
     }
 
     function obtenerId()
@@ -235,6 +241,11 @@ class Proyecto
         }
     }
 
+    function setTutor($tutor){
+        $this->tutor = $tutor;
+        $this->proyectoDAO->setTutor($tutor);
+    }
+
     function getTutor()
     {
         return $this->tutor;
@@ -283,5 +294,14 @@ class Proyecto
     {
         $this->id = $id;
         $this->proyectoDAO->setId($id);
+    }
+
+    function getDocumento(){
+        return $this->documento;
+    }
+
+    function setJurado($jurado){
+        $this->jurado = $jurado;
+        $this->proyectoDAO->setJurado($jurado);
     }
 }

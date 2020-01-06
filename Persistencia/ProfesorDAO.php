@@ -27,6 +27,12 @@ class ProfesorDAO{
         return "select idProfesor from Profesor where correo = '". $this -> correo ."' and clave = sha1('". $this -> clave ."')";
     }
 
+    function consultar()
+    {
+        return "select nombre, apellido, correo from profesor
+                where idprofesor = '" . $this->id . "'";
+    }
+
     function consultarTodos(){
         return "select idProfesor, nombre, apellido, correo from profesor";
     }
