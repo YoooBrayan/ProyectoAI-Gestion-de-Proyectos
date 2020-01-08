@@ -36,7 +36,7 @@ function validarFile(t) {
     $("#larchivo").attr("style", "display: inline; color: red;");
     $("#boton").prop("disabled", true);
     return false;
-  } else if (fileSize > 25000) {
+  } else if (fileSize > 100000) {
     console.log("> 25000");
     $("#larchivo").html("El archivo no debe superar los 25000 Bytes");
     $("#larchivo").attr("style", "display: inline; color: red;");

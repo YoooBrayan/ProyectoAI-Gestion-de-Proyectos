@@ -26,7 +26,7 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
     //echo "Nombre : " . $doc["name"] . "<br>";
     //echo "size : " . $doc["size"] . "<br>";
 
-    if ($doc["size"] <= 25000) {
+    if ($doc["size"] <= 100000) {
 
 
         if (strpos($doc["type"], "pdf")) {
@@ -36,10 +36,10 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
             }
 
             $destino = $_SERVER['DOCUMENT_ROOT'] . '/proyectoAI1/documentos/';
-            move_uploaded_file($doc['tmp_name'], $destino . $doc["name"] . ".pdf");
+            move_uploaded_file($doc['tmp_name'], $destino . date("jnYhis") . ".pdf");
         }
 
-        $proyecto = new Proyecto("", $titulo, $plantamiento, $oGeneral, $oEspecificos, $solucion, $doc["name"], "", "", "", $random);
+        $proyecto = new Proyecto("", $titulo, $plantamiento, $oGeneral, $oEspecificos, $solucion, date("jnYhis") . ".pdf", "", "", "", $random);
 
         $proyecto->crear();
         $proyecto->obtenerId();

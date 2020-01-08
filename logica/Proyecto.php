@@ -106,7 +106,7 @@ class Proyecto
         $resultados = array();
         $i = 0;
         while (($registro = $this->conexion->extraer()) != null) {
-            $resultados[$i] = new Proyecto($registro[0], $registro[1]);
+            $resultados[$i] = new Proyecto($registro[0], $registro[1], "", "", "", "", "", "", "", $registro[2]);
             $i++;
         }
         $this->conexion->cerrar();
@@ -120,7 +120,7 @@ class Proyecto
         $resultados = array();
         $i = 0;
         while (($registro = $this->conexion->extraer()) != null) {
-            $resultados[$i] = new Proyecto($registro[0], $registro[1]);
+            $resultados[$i] = new Proyecto($registro[0], $registro[1], "", "", "", "", "", "", "", $registro[2]);
             $i++;
         }
         $this->conexion->cerrar();

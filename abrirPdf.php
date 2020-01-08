@@ -1,6 +1,14 @@
 <?php 
 
-$file = 'Parcial 1 Apl Int.pdf.pdf';
+
+$proyecto = new Proyecto($_GET['id']);
+$bool = $proyecto->consultar();
+
+$file = "";
+
+if($bool){
+    $file = $proyecto->getDocumento();
+}
 
 //header('Content-type:application/pdf');
 //readfile('documentos/'.$file);
@@ -8,4 +16,4 @@ $file = 'Parcial 1 Apl Int.pdf.pdf';
 ?>
 
 
-<iframe src="documentos/<?php echo $file; ?>" width="100%" height="100%"></iframe>
+<iframe src="documentos/<?php echo $file; ?>" width="100%" height="563px"></iframe>

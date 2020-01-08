@@ -48,7 +48,7 @@ if ($estudiante->existeProyecto()) {
                 </select>
             </div>
             <div class="form-group">
-                <button id="buscar" type="submit" class="btn btn-primary">Asignar</button>
+                <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
             </div>
 
     </form>

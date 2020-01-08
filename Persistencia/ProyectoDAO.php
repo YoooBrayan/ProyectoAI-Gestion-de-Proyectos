@@ -37,11 +37,11 @@ class ProyectoDAO{
     }
 
     function actualizarTutor(){
-        return "update proyecto set tutor = '". $this -> tutor ."' where idProyecto = '". $this -> id ."'";
+        return "update proyecto set tutor = '". $this -> tutor ."', estado = 2 where idProyecto = '". $this -> id ."'";
     }
 
     function actualizarJurado(){
-        return "update proyecto set jurado = '". $this -> jurado ."' where idProyecto = '". $this -> id ."'";
+        return "update proyecto set jurado = '". $this -> jurado ."', estado = 4 where idProyecto = '". $this -> id ."'";
     }
 
     function actualizarEstado(){
@@ -49,15 +49,15 @@ class ProyectoDAO{
     }    
 
     function consultarProyectosTutor(){
-        return "select idProyecto, titulo from proyecto where tutor = '". $this -> tutor ."'";
+        return "select idProyecto, titulo, estado from proyecto where tutor = '". $this -> tutor ."'";
     }
 
     function consultarProyectosJurado(){
-        return "select idProyecto, titulo from proyecto where jurado = '". $this -> jurado ."'";
+        return "select idProyecto, titulo, estado from proyecto where jurado = '". $this -> jurado ."'";
     }
 
     function estado(){
-        return "select descripcion from estado where idEstado = '". $this -> estado ."'";
+        return "select estado from proyecto where idProyecto = '". $this -> id ."'";
     }
 
     function obtenerId(){
