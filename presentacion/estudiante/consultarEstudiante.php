@@ -27,6 +27,8 @@ include 'presentacion/cabeceraAdministrador.php';
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
 								<th scope="col">Correo</th>
+								<th scope="col">Tutor</th>
+								<th scope="col">Jurado</th>
 								<th scope="col">Proyecto</th>
 								<th scope="col">Servicios</th>
 							</tr>
@@ -39,10 +41,16 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $e->getNombre() . "</td>";
         echo "<td>" . $e->getApellido() . "</td>";
 		echo "<td>" . $e->getCorreo() . "</td>";
+		echo "<td>" . $e->getProyecto()->getTutor() . "</td>";
+		echo "<td>" . ($e->getProyecto()->getJurado()=="" ? "Nada" : $e->getProyecto()->getJurado()) . "</td>";
 		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
 		echo "<td>" . 
-		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Tutor' ></span> </a>
-         <a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=jurado' data-toggle='modal' data-target='#modalAsignar'><span ' class='fas fa-user-plus' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Asignar Jurado' ></span> </a>
+
+		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span id='iconT". $e->getId() ."' class='fas fa-user-plus' style='color: ". ($e->getProyecto()->getTutor()=="" ? '#CE382B' : '#7EEC3B') ."' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='". ($e->getProyecto()->getTutor()=="" ? 'Asignar Tutor' : 'Tutor Asignado') ."' ></span> </a>
+		
+		 <a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=jurado' data-toggle='modal' data-target='#modalAsignar'>
+		 <span id='iconJ". $e->getId() ."' class='fas fa-user-plus'    style='color: ". ($e->getProyecto()->getJurado()=="" ? '#CE382B' : '#7EEC3B') ."' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='".($e->getProyecto()->getJurado()=="" ? 'Asignar Jurado' : 'Jurado Asignado') ."' ></span>
+		  </a>
               </td>";
         echo "</tr>";
     

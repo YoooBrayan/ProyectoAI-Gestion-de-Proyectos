@@ -51,7 +51,7 @@ include 'presentacion/profesor/cabeceraProfesor.php';
 									echo "<td>" . $p->getTitulo() . "</td>";
 									echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=" . $p->getId() . "&origen=" . $titulo . "'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
 									echo "<td>" .
-										"<a id='estado" . $p->getId() . "' ><span id='icon" . $p->getId() ."' class='far " . ($p->getEstado()==2 || $p->getEstado()==4?"fa-square":"fa-check-square") . "'  data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Revisar' ></span> </a>
+										"<a id='estado" . $p->getId() . "' ><span id='icon" . $p->getId() ."' class='far " . ($p->getEstado()!=3 && $p->getEstado()!=5?"fa-square":"fa-check-square") . "'  data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Revisar' ></span> </a>
               </td>";
 									echo "</tr>";
 								}

@@ -48,8 +48,11 @@ if ($estudiante->existeProyecto()) {
                 </select>
             </div>
             <div class="form-group">
+                <br>
                 <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
+                <button id="quitar" type="submit" class="btn btn-primary" data-dismiss="modal">Quitar</button>
             </div>
+
 
     </form>
 
@@ -81,6 +84,9 @@ if ($estudiante->existeProyecto()) {
                         timer: 2000
                     });
 
+                    $("#iconT" + idE).attr("style", "color: #7EEC3B");
+                    $("#iconT" + idE).attr("data-original-title", "Tutor Asignado");
+
                 } else if (response == "ActualizadoJ") {
                     Swal.fire({
                         position: 'top-end',
@@ -89,6 +95,62 @@ if ($estudiante->existeProyecto()) {
                         showConfirmButton: false,
                         timer: 2000
                     });
+
+                    $("#iconJ" + idE).attr("style", "color: #7EEC3B");
+                    $("#iconJ" + idE).attr("data-original-title", "Jurado Asignado");
+
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo Salio Mal!!!',
+                    })
+                }
+
+            }
+        });
+
+    });
+
+    $("form").on("click", "#quitar", function(e) {
+
+        e.preventDefault();
+        //let idT = $("#idS option:selected")[0].value;
+        let idE = '<?php echo $_GET['idE']; ?>';
+        let tipo = '<?php echo $_GET['tipo']; ?>'
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo "indexAjax.php?pid=" . base64_encode("presentacion/profesor/validar.php") ?>",
+            data: {
+                idE,
+                tipo
+            },
+            success: function(response) {
+                if (response == "EAT") {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'info',
+                        title: 'Estado Actualizado',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+
+                    $("#iconT" + idE).attr("style", "color: #CE382B");
+                    $("#iconT" + idE).attr("data-original-title", "Asignar Tutor");
+
+                } else if (response == "EAJ") {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'info',
+                        title: 'Estado Actualizado.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+
+                    $("#iconJ" + idE).attr("style", "color: #CE382B");
+                    $("#iconJ" + idE).attr("data-original-title", "Asignar Jurado");
+
                 } else {
                     Swal.fire({
                         icon: 'error',

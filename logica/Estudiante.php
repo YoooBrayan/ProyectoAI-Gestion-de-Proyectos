@@ -55,6 +55,8 @@ class Estudiante extends Persona
         while (($registro = $this->conexion->extraer()) != null) {
             $resultados[$i] = new Estudiante($registro[0], $registro[1], $registro[2], $registro[3]);
             $resultados[$i]->getProyecto()->setId($registro[4]);
+            $resultados[$i]->getProyecto()->setTutor($registro[5]);
+            $resultados[$i]->getProyecto()->setJurado($registro[6]);
             $i++;
         }
         $this->conexion->cerrar();

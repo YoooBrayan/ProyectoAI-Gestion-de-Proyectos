@@ -53,17 +53,17 @@ class Proyecto
             $this->conexion->cerrar();
             return false;
         } else {
-        $this->titulo = $resultado[0];
-        $this->plantamiento = $resultado[1];
-        $this->objetivoGeneral = $resultado[2];
-        $this->objetivoEspecifico = $resultado[3];
-        $this->solucionTecnologica = $resultado[4];
-        $this->estado = $resultado[5];
-        $this->tutor = $resultado[6];
-        $this->jurado = $resultado[7];
-        $this->documento = $resultado[8];
-        $this->conexion->cerrar();
-        return true;
+            $this->titulo = $resultado[0];
+            $this->plantamiento = $resultado[1];
+            $this->objetivoGeneral = $resultado[2];
+            $this->objetivoEspecifico = $resultado[3];
+            $this->solucionTecnologica = $resultado[4];
+            $this->estado = $resultado[5];
+            $this->tutor = $resultado[6];
+            $this->jurado = $resultado[7];
+            $this->documento = $resultado[8];
+            $this->conexion->cerrar();
+            return true;
         }
     }
 
@@ -84,11 +84,25 @@ class Proyecto
         $this->conexion->cerrar();
     }
 
+    function quitarTutor()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->quitarTutor());
+        $this->conexion->cerrar();
+    }
+
     function actualizarJurado()
     {
         $this->conexion->abrir();
         //echo $this->proyectoDAO->actualizarJurado();
         $this->conexion->ejecutar($this->proyectoDAO->actualizarJurado());
+        $this->conexion->cerrar();
+    }
+
+    function quitarJurado()
+    {
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->quitarJurado());
         $this->conexion->cerrar();
     }
 
@@ -241,7 +255,8 @@ class Proyecto
         }
     }
 
-    function setTutor($tutor){
+    function setTutor($tutor)
+    {
         $this->tutor = $tutor;
         $this->proyectoDAO->setTutor($tutor);
     }
@@ -296,11 +311,13 @@ class Proyecto
         $this->proyectoDAO->setId($id);
     }
 
-    function getDocumento(){
+    function getDocumento()
+    {
         return $this->documento;
     }
 
-    function setJurado($jurado){
+    function setJurado($jurado)
+    {
         $this->jurado = $jurado;
         $this->proyectoDAO->setJurado($jurado);
     }
