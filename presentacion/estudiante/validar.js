@@ -20,6 +20,7 @@ function validarT() {
 }
 
 function validarFile(t) {
+  
   var fileName = t.name;
   var fileSize = t.size;
 

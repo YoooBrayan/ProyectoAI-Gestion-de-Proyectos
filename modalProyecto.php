@@ -5,6 +5,8 @@ require_once 'logica/Estudiante.php';
 $proyecto = new Proyecto($_GET['id']);
 $bool = $proyecto->consultar();
 
+$estudiantes = $proyecto->autores();
+
 
 if ($bool) {
 
@@ -16,6 +18,16 @@ if ($bool) {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
     </div>
     <div class="modal-body">
+        <div class="card border-dark mb-3" style="max-width: 100%;">
+            <div class="card-header">Autores</div>
+            <div class="card-body text-dark">
+                <?php 
+                    foreach($estudiantes as $e){
+                        echo "<p class='card-text'> " . $e ." </p>";
+                    }
+                ?>
+            </div>
+        </div>
         <div class="card border-dark mb-3" style="max-width: 100%;">
             <div class="card-header">Titulo</div>
             <div class="card-body text-dark">
@@ -59,7 +71,8 @@ if ($bool) {
                     <label> <?php echo $proyecto->getTutor(); ?> </label>
                 </div>
             </div>
-        <?php } if ($_GET['origen'] == "Tutor" || $_GET['origen'] == "E") { ?>
+        <?php }
+        if ($_GET['origen'] == "Tutor" || $_GET['origen'] == "E") { ?>
 
             <div class="card border-dark mb-3" style="max-width: 100%;">
                 <div class="card-header">Jurado</div>
@@ -74,7 +87,7 @@ if ($bool) {
         <div class="card border-dark mb-3" style="max-width: 100%;">
             <div class="card-header">Documento</div>
             <div class="card-body text-dark">
-                <a href="index.php?pid= <?php echo base64_encode("abrirPdf.php") . "&id=" . $_GET['id']; ?>" ><?php echo $proyecto->getDocumento(); ?></a>
+                <a href="index.php?pid= <?php echo base64_encode("abrirPdf.php") . "&id=" . $_GET['id']; ?>"><?php echo $proyecto->getDocumento(); ?></a>
 
             </div>
         </div>

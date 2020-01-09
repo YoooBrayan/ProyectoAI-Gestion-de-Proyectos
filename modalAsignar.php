@@ -6,8 +6,11 @@ require_once 'logica/Estudiante.php';
 $titulo = "";
 
 $estudiante = new Estudiante($_GET['idE']);
-if ($estudiante->existeProyecto()) {
+$bool = $estudiante->existeProyecto();
+$estudiante->consultar();
+//echo $bool;
 
+if ($bool != 0) {
     if ($_GET['tipo'] == "tutor") {
         $titulo = "Tutor";
         $tutores = $estudiante->getProyecto()->consultarTutores();
@@ -15,48 +18,58 @@ if ($estudiante->existeProyecto()) {
         $titulo = "Jurado";
         $jurados = $estudiante->getProyecto()->consultarJurados();
     }
-}
-
 
 ?>
 
-<div class="modal-header">
-    <h5 class="modal-title">Asignar <?php echo " " . $titulo; ?> </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
+    <div class="modal-header">
+        <h5 class="modal-title">Asignar <?php echo " " . $titulo; ?> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
 
-    <form>
-        <div class="form-group">
-            <div class="input-group">
-                <label style="font-size: 1.2em;">Seleccione <?php echo " " . $titulo; ?>:</label>
-                <select class="custom-select" style="margin-left: 5px;" id="idS">
-                    <?php
-                    if ($_GET['tipo'] == "tutor") {
-                        foreach ($tutores as $t) {
-                    ?>
-                            <option value="<?php echo $t->getId() ?>"><?php echo $t->getNombre();  ?></option>
-                        <?php }
-                    } else if ($_GET['tipo'] == "jurado") {
-                        foreach ($jurados as $j) {
-                        ?>
-                            <option value="<?php echo $j->getId() ?>"><?php echo $j->getNombre();  ?></option>
-                    <?php }
-                    } ?>
-                </select>
-            </div>
+        <form>
             <div class="form-group">
-                <br>
-                <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
-                <button id="quitar" type="submit" class="btn btn-primary" data-dismiss="modal">Quitar</button>
-            </div>
+                <div class="input-group">
+                    <label style="font-size: 1.2em;">Seleccione <?php echo " " . $titulo; ?>:</label>
+                    <select class="custom-select" style="margin-left: 5px;" id="idS">
+                        <?php
+                        if ($_GET['tipo'] == "tutor") {
+                            foreach ($tutores as $t) {
+                        ?>
+                                <option value="<?php echo $t->getId() ?>"><?php echo $t->getNombre();  ?></option>
+                            <?php }
+                        } else if ($_GET['tipo'] == "jurado") {
+                            foreach ($jurados as $j) {
+                            ?>
+                                <option value="<?php echo $j->getId() ?>"><?php echo $j->getNombre();  ?></option>
+                        <?php }
+                        } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <br>
+                    <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
+                    <button id="quitar" type="submit" class="btn btn-primary" data-dismiss="modal">Quitar</button>
+                </div>
 
 
-    </form>
+        </form>
 
-</div>
+    </div>
+
+<?php
+
+}else{
+    ?>
+
+    <div class="modal-header">
+        <h5 class="modal-title">El estudiante no ha creado Proyecto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+
+<?php } ?>
 
 <script type="text/javascript">
     $("form").on("click", "#buscar", function(e) {

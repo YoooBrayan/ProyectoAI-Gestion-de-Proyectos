@@ -28,8 +28,6 @@ include 'presentacion/cabeceraAdministrador.php';
 								<th scope="col">Apellido</th>
 								<th scope="col">Correo</th>
 								<th scope="col">Tutor</th>
-								<th scope="col">Jurado</th>
-								<th scope="col">Proyecto</th>
 								<th scope="col">Servicios</th>
 							</tr>
 						</thead>
@@ -41,8 +39,6 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $e->getNombre() . "</td>";
         echo "<td>" . $e->getApellido() . "</td>";
 		echo "<td>" . $e->getCorreo() . "</td>";
-		echo "<td>" . $e->getProyecto()->getTutor() . "</td>";
-		echo "<td>" . ($e->getProyecto()->getJurado()=="" ? "Nada" : $e->getProyecto()->getJurado()) . "</td>";
 		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
 		echo "<td>" . 
 

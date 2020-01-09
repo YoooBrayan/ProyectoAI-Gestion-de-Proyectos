@@ -224,7 +224,7 @@ class Proyecto
     function consultarTutores()
     {
         $this->conexion->abrir();
-        //echo "<br>IDParametro" . $this->id . "<br>";
+        //echo $this->proyectoDAO->consultarTutores();
         $this->conexion->ejecutar($this->proyectoDAO->consultarTutores());
         $resultados = array();
         $i = 0;
@@ -320,5 +320,19 @@ class Proyecto
     {
         $this->jurado = $jurado;
         $this->proyectoDAO->setJurado($jurado);
+    }
+
+    function autores(){
+        $this->conexion->abrir();
+        //echo "<br>IDParametro" . $this->id . "<br>";
+        $this->conexion->ejecutar($this->proyectoDAO->autores());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this->conexion->extraer()) != null) {
+            $resultados[$i] = $registro[0];
+            $i++;
+        }
+        $this->conexion->cerrar();
+        return $resultados;
     }
 }

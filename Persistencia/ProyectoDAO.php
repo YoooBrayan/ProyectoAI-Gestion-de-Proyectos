@@ -35,6 +35,10 @@ class ProyectoDAO
         return "insert into Proyecto(titulo, plantamiento, objetivoGeneral, objetivosEspecificos, solucionTecnologica, documento, random) values ('" . $this->titulo . "', '" . $this->plantamiento . "', '" . $this->objetivoGeneral . "', '" . $this->objetivoEspecifico . "', '" . $this->solucionTecnologica . "', '" . $this->documento . "', '" . $this->random . "')";
     }
 
+    function autores(){
+        return "select concat_ws(' ', 'Codigo:', codigo, 'Nombre:', nombre, apellido) as estudiante from estudiante where proyecto = '" . $this->id ."'";
+    }
+
     function consultar()
     {
         return "select titulo, plantamiento, objetivoGeneral, objetivosEspecificos, solucionTecnologica, descripcion, tutor('" . $this->id . "'), jurado('" . $this->id . "'), documento from Proyecto p inner join estudiante e on p.idProyecto = e.proyecto inner join estado es on p.estado = es.idEstado where idproyecto = '" . $this->id . "' limit 1;";

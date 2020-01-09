@@ -33,7 +33,7 @@ class EstudianteDAO
 
     function consultarTodos()
     {
-        return "select codigo, nombre, apellido, correo, proyecto, tutor, jurado from estudiante e inner join proyecto p on e.proyecto = p.idProyecto order by estado asc";
+        return "select codigo, nombre, apellido, correo, proyecto, tutor, jurado from estudiante e left join proyecto p on e.proyecto = p.idProyecto order by estado asc";
     }
 
     function registrar()

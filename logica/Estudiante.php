@@ -153,11 +153,14 @@ class Estudiante extends Persona
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->estudianteDAO->existeProyecto());
         $resultado = $this->conexion->extraer();
-        if ($this->conexion->numFilas() == 0) {
+        //echo "Resultado: " . $resultado[0] . "<br>"; 
+        if ($resultado[0] == "") {
+          //  echo "0 <br>";
             $this->conexion->cerrar();
             return false;
         } else {
 
+            //echo "siempre 1 <br>";
             $this->proyecto->setId($resultado[0]);
             $this->conexion->cerrar();
             return true;
