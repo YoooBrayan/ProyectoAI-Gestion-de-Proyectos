@@ -32,7 +32,7 @@ function validarFile(t) {
   //console.log("size: " + fileSize);
   if (ext != "pdf") {
     // recuperamos la extensión del archivo
-    console.log("extension Invalida");
+    //console.log("extension Invalida");
     $("#larchivo").html("El archivo no tiene la extensión adecuada");
     $("#larchivo").attr("style", "display: inline; color: red;");
     $("#boton").prop("disabled", true);

@@ -8,20 +8,28 @@ $titulo = "";
 $estudiante = new Estudiante($_GET['idE']);
 $bool = $estudiante->existeProyecto();
 $estudiante->consultar();
+$estudiante->getProyecto()->estado();
+$estado = $estudiante->getProyecto()->getEstado();
 //echo $bool;
 
 if ($bool != 0) {
     if ($_GET['tipo'] == "tutor") {
         $titulo = "Tutor";
         $tutores = $estudiante->getProyecto()->consultarTutores();
-    } else if ($_GET['tipo'] == "jurado") {
+    } else if ($_GET['tipo'] == "jurado" && $estado!=1 && $estado!=2) {
         $titulo = "Jurado";
         $jurados = $estudiante->getProyecto()->consultarJurados();
+    } else {
+?>
+        <div class="modal-header">
+            <h5 class="modal-title">El proyecto debe estar aprobado por el tutor</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+        </div>
+    <?php
     }
 
-?>
-
-    <div class="modal-header">
+    if($titulo!=""){?>
+        <div class="modal-header">
         <h5 class="modal-title">Asignar <?php echo " " . $titulo; ?> </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -58,11 +66,13 @@ if ($bool != 0) {
         </form>
 
     </div>
-
+        
 <?php
+    }
+    
 
-}else{
-    ?>
+} else {
+?>
 
     <div class="modal-header">
         <h5 class="modal-title">El estudiante no ha creado Proyecto</h5>

@@ -12,7 +12,7 @@
 				<div class="card-header bg-dark text-white" id="contenedor1">Bienvenido</div>
 				<div class="card-body">
 					<h1>
-						<p>Desarrollar una aplicación que permita administrar anteproyectos de grado. Debe tener 3 roles:Administrador, Estudiante, Profesor.</p>
+						<p>Aplicación que permite administrar anteproyectos de grado. Roles:Administrador, Estudiante y Profesor.</p>
 					</h1>
 				</div>
 			</div>

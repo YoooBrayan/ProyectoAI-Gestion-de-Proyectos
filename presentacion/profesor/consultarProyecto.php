@@ -51,7 +51,7 @@ include 'presentacion/profesor/cabeceraProfesor.php';
 									echo "<td>" . $p->getTitulo() . "</td>";
 									echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=" . $p->getId() . "&origen=" . $titulo . "'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
 									echo "<td>" .
-										"<a id='estado" . $p->getId() . "' ><span id='icon" . $p->getId() ."' class='far " . ($p->getEstado()!=3 && $p->getEstado()!=5?"fa-square":"fa-check-square") . "'  data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Revisar' ></span> </a>
+										"<a id='estado" . $p->getId() . "' ><span id='icon" . $p->getId() ."' class='far " . ($p->getEstado()!=3 && $p->getEstado()!=5? ($_GET['tipo']=="t" && $p->getEstado()==4 ? "fa-check-square" : "fa-square") :"fa-check-square") . "'  data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Revisar' ></span> </a>
               </td>";
 									echo "</tr>";
 								}
@@ -94,7 +94,7 @@ include 'presentacion/profesor/cabeceraProfesor.php';
 				var elemento = $(this)[0].parentElement.parentElement;
 				var id = $(elemento).attr('id');
 				let tipo = '<?php echo $_GET['tipo'] ?>';
-				console.log("tipoI: " + tipo);
+				//console.log("tipoI: " + tipo);
 				
 				$.ajax({
 					type: "POST",
@@ -103,7 +103,7 @@ include 'presentacion/profesor/cabeceraProfesor.php';
 					success: function (response) {
 
 						let datos = JSON.parse(response);
-						console.log(datos['tipo']);
+						//console.log(datos['tipo']);
 						$("#icon<?php echo $p->getId(); ?>").removeClass();
 						$("#icon<?php echo $p->getId(); ?>").addClass(datos['icon']);
 						$("#icon<?php echo $p->getId(); ?>").attr('data-original-title', datos['mensaje']);
