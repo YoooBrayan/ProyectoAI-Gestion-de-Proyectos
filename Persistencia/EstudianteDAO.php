@@ -55,7 +55,7 @@ class EstudianteDAO
 
     function existeCorreo()
     {
-        return "select codigo from estudiante where correo = '" . $this->correo . "'";
+        return "select correo from correos where correo = '" . $this->correo . "'";
     }
 
     function existeEstudiante()

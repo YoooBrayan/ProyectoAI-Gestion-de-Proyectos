@@ -5,9 +5,6 @@
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
 
-$estudiante = new Estudiante();
-$estudiantes = $estudiante->consultarTodos();
-
 include 'presentacion/cabeceraAdministrador.php';
 
 $tipo = $_GET["tipo"];

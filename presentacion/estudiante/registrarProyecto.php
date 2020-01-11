@@ -26,7 +26,7 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
     //echo "Nombre : " . $doc["name"] . "<br>";
     //echo "size : " . $doc["size"] . "<br>";
 
-    if ($doc["size"] <= 100000) {
+    if ($doc["size"] <= 700000) {
 
 
         if (strpos($doc["type"], "pdf")) {

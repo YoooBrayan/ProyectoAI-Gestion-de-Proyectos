@@ -149,7 +149,6 @@ if (isset($_POST["crear"])) {
         // this.files[0].size recupera el tamaño del archivo
         validarFile(this.files[0]);
 
-
     });
 
     $("form").on("click", "#boton", function(e) {

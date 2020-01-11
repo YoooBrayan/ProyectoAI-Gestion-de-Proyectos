@@ -38,7 +38,7 @@ class ProfesorDAO{
     }
 
     function existeCorreo(){
-        return "select idProfesor from profesor where correo = '" . $this -> correo ."'";
+        return "select correo from correos where correo = '" . $this->correo . "'";
     }
 
     function setId($id){
@@ -53,5 +53,3 @@ class ProfesorDAO{
         $this->nombre = $nombre;
     }
 }
-
-?>
