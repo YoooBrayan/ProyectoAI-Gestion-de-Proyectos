@@ -335,4 +335,10 @@ class Proyecto
         $this->conexion->cerrar();
         return $resultados;
     }
+
+    function eliminar(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->proyectoDAO->eliminar());
+        $this->conexion->cerrar();
+    }
 }

@@ -39,9 +39,10 @@ class Estudiante extends Persona
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->estudianteDAO->consultar());
         $resultado = $this->conexion->extraer();
+        $this->proyecto = new Proyecto();
         $this->nombre = $resultado[0];
         $this->apellido = $resultado[1];
-        $this->correo = $resultado[2];
+        $this->correo = $resultado[2];      
         $this->proyecto->setId($resultado[3]);
         $this->conexion->cerrar();
     }

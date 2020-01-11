@@ -126,4 +126,8 @@ class ProyectoDAO
     {
         $this->jurado = $jurado;
     }
+
+    function eliminar(){
+        return "call eliminarProyecto('". $this-> id ."')";
+    }
 }

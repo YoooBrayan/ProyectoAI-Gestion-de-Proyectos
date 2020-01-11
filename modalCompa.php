@@ -48,11 +48,13 @@ session_start();
 				let color = "#DE1F1F";
 				$("#label").html(datos['mensaje']);
 				$("#label").attr("style", "display: block; color:" + datos['color']);
+				$("#botonA").attr("style", "display: inline-block;");
 				if(datos['mensaje']=="Estudiante valido!"){
 					$("#compa").html(datos['id'])
 					$("#compa").attr("style", "display: inline; font-size: 132%; color:" + datos['color'])
 				}else{
 					$("#compa").attr("style", "display: none;")
+					$("#botonA").attr("style", "display: none");
 				}
 			}
 		});

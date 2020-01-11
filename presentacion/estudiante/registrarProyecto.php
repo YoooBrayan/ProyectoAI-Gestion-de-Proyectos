@@ -51,6 +51,7 @@ if (isset($_POST["crear"]) || isset($_GET["pid"])) {
             $compa = new Estudiante($_SESSION['idCC']);
             $compa->setProyecto($proyecto->getId());
             $compa->agregarEstudianteProyecto();
+            $_SESSION['idCC'] = "";
         } 
 
         //header("Location: presentacion/estudiante/sesionEstudiante.php");

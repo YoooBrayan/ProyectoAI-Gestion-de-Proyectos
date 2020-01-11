@@ -157,4 +157,12 @@ begin
 
 end//
 
+create procedure eliminarProyecto(id int)
+begin
+
+    update estudiante set proyecto = null where proyecto = id;
+    delete from proyecto where idProyecto = id;
+
+end//
+
 select titulo, plantamiento, objetivoGeneral, objetivosEspecificos, solucionTecnologica, descripcion, tutor(439), jurado(439), documento from Proyecto p inner join estudiante e on p.idProyecto = e.proyecto inner join estado es on p.estado = es.idEstado where idproyecto = 439 limit 1;
