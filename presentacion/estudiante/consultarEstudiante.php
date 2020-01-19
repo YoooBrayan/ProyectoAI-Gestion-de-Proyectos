@@ -1,6 +1,6 @@
 <?php
-$administrador = new Administrador($_SESSION['id']);
-$administrador->consultar();
+//$administrador = new Administrador($_SESSION['id']);
+//$administrador->consultar();
 
 $estudiante = new Estudiante();
 $estudiantes = $estudiante -> consultarTodos();
@@ -27,7 +27,7 @@ include 'presentacion/cabeceraAdministrador.php';
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
 								<th scope="col">Correo</th>
-								<th scope="col">Tutor</th>
+								<th scope="col">Documento</th>
 								<th scope="col">Servicios</th>
 							</tr>
 						</thead>
@@ -39,7 +39,7 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $e->getNombre() . "</td>";
         echo "<td>" . $e->getApellido() . "</td>";
 		echo "<td>" . $e->getCorreo() . "</td>";
-		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas fa-file-alt' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Proyecto' ></span> </a> </td>";
+		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas ". ($e->getProyecto()->getId()!="" ? "fa-file-alt" : "fa-exclamation-triangle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title= '". ($e->getProyecto()->getId()!="" ? "Ver Proyecto" : "Proyecto No Subido") ."'></span> </a> </td>";
 		echo "<td>" . 
 
 		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span id='iconT". $e->getId() ."' class='fas fa-user-plus' style='color: ". ($e->getProyecto()->getTutor()=="" ? '#CE382B' : '#7EEC3B') ."' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='". ($e->getProyecto()->getTutor()=="" ? 'Asignar Tutor' : 'Tutor Asignado') ."' ></span> </a>

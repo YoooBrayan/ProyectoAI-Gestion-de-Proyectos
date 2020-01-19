@@ -63,7 +63,7 @@ static $fotos = '/IPSUD_Yo/fotos/';
 
 </head>
 
-<body style="background-image: url(img/fondo1.jpg); background-size: 100% 100%; background-attachment: fixed;">
+<body style="background-image: url(img/fondo1.jpg); background-size: 100% 100%; background-attachment: fixed; color:cornsilk;">
 
     <?php
     if (isset($_GET["pid"])) {

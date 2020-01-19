@@ -16,7 +16,7 @@ if ($bool != 0) {
     if ($_GET['tipo'] == "tutor") {
         $titulo = "Tutor";
         $tutores = $estudiante->getProyecto()->consultarTutores();
-    } else if ($_GET['tipo'] == "jurado" && $estado!=1 && $estado!=2) {
+    } else if ($_GET['tipo'] == "jurado" && $estado != 1 && $estado != 2) {
         $titulo = "Jurado";
         $jurados = $estudiante->getProyecto()->consultarJurados();
     } else {
@@ -28,51 +28,49 @@ if ($bool != 0) {
     <?php
     }
 
-    if($titulo!=""){?>
+    if ($titulo != "") { ?>
         <div class="modal-header">
-        <h5 class="modal-title">Asignar <?php echo " " . $titulo; ?> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
+            <h5 class="modal-title">Asignar <?php echo " " . $titulo; ?> </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
 
-        <form>
-            <div class="form-group">
-                <div class="input-group">
-                    <label style="font-size: 1.2em;">Seleccione <?php echo " " . $titulo; ?>:</label>
-                    <select class="custom-select" style="margin-left: 5px;" id="idS">
-                        <?php
-                        if ($_GET['tipo'] == "tutor") {
-                            foreach ($tutores as $t) {
-                        ?>
-                                <option value="<?php echo $t->getId() ?>"><?php echo $t->getNombre();  ?></option>
-                            <?php }
-                        } else if ($_GET['tipo'] == "jurado") {
-                            foreach ($jurados as $j) {
-                            ?>
-                                <option value="<?php echo $j->getId() ?>"><?php echo $j->getNombre();  ?></option>
-                        <?php }
-                        } ?>
-                    </select>
-                </div>
+            <form>
                 <div class="form-group">
-                    <br>
-                    <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
-                    <button id="quitar" type="submit" class="btn btn-primary" data-dismiss="modal">Quitar</button>
-                </div>
+                    <div class="input-group">
+                        <label style="font-size: 1.2em;">Seleccione <?php echo " " . $titulo; ?>:</label>
+                        <select class="selectpicker" data-show-subtext="true" data-live-search="true" style="margin-left: 5px;" id="idS">
+                            <?php
+                            if ($_GET['tipo'] == "tutor") {
+                                foreach ($tutores as $t) {
+                            ?>
+                                    <option value="<?php echo $t->getId() ?>" data-subtext="<?php echo $t->getNombre();  ?>"></option>
+                                <?php }
+                            } else if ($_GET['tipo'] == "jurado") {
+                                foreach ($jurados as $j) {
+                                ?>
+                                    <option value="<?php echo $j->getId() ?>"><?php echo $j->getNombre();  ?></option>
+                            <?php }
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <button id="buscar" type="submit" class="btn btn-primary" data-dismiss="modal">Asignar</button>
+                        <button id="quitar" type="submit" class="btn btn-primary" data-dismiss="modal">Quitar</button>
+                    </div>
 
 
-        </form>
+            </form>
 
-    </div>
-        
-<?php
+        </div>
+
+    <?php
     }
-    
-
 } else {
-?>
+    ?>
 
     <div class="modal-header">
         <h5 class="modal-title">El estudiante no ha creado Proyecto</h5>
@@ -82,6 +80,12 @@ if ($bool != 0) {
 <?php } ?>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('.selectpicker').selectpicker({
+            style: 'btn-default'
+        });
+    })
+
     $("form").on("click", "#buscar", function(e) {
 
         e.preventDefault();

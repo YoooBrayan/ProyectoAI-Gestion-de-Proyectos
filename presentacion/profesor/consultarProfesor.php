@@ -1,6 +1,4 @@
 <?php
-$administrador = new Administrador($_SESSION['id']);
-$administrador->consultar();
 
 $profesor = new Profesor();
 $profesores = $profesor -> consultarTodos();
@@ -27,7 +25,6 @@ include 'presentacion/cabeceraAdministrador.php';
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
                                 <th scope="col">Correo</th>
-                                <th scope="col">Servicios</th>
 							</tr>
 						</thead>
 							<tbody>
@@ -38,11 +35,6 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $p->getNombre() . "</td>";
         echo "<td>" . $p->getApellido() . "</td>";
         echo "<td>" . $p->getCorreo() . "</td>";
-        echo "<td id='cambiarEstados'>" . "<a href='modalPaciente.php?idPaciente=" . $p->getId() . "' data-toggle='modal' data-target='#modalPaciente' ><span ' class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                       <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/paciente/actualizarPaciente.php") . "&idPaciente=" . $p->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                       <a class='fas fa-camera' href='index.php?pid=" . base64_encode("presentacion/paciente/actualizarFotoPaciente.php") . "&idPaciente=" . $p->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar Foto'> </a>
-                       <a  id='cambiarEstado" . $p->getId() . "' class='fas fa-power-off' href='". $p-> getId() . "'> </a>
-              </td>";
         echo "</tr>";
     
     }
