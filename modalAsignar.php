@@ -46,7 +46,7 @@ if ($bool != 0) {
                             if ($_GET['tipo'] == "tutor") {
                                 foreach ($tutores as $t) {
                             ?>
-                                    <option value="<?php echo $t->getId() ?>" data-subtext="<?php echo $t->getNombre();  ?>"></option>
+                                    <option value="<?php echo $t->getId() ?>"><?php echo $t->getNombre();  ?></option>
                                 <?php }
                             } else if ($_GET['tipo'] == "jurado") {
                                 foreach ($jurados as $j) {
