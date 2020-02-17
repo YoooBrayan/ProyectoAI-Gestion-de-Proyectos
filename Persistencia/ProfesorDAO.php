@@ -24,7 +24,7 @@ class ProfesorDAO{
     }
 
     function autenticar(){
-        return "select idProfesor from Profesor where correo = '". $this -> correo ."' and clave = sha1('". $this -> clave ."')";
+        return "select idProfesor from profesor where correo = '". $this -> correo ."' and clave = sha1('". $this -> clave ."')";
     }
 
     function consultar()
