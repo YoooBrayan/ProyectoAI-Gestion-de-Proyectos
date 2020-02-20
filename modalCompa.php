@@ -45,6 +45,7 @@ session_start();
 				//console.log(datos['icon']);
 				$("#estado").removeClass();
 				$("#estado").addClass(datos['icon']);
+				$("#estado").attr("style", "color:" + datos['color'] + "; font-size: 2em;");
 				let color = "#DE1F1F";
 				$("#label").html(datos['mensaje']);
 				$("#label").attr("style", "display: block; color:" + datos['color']);

@@ -39,7 +39,7 @@ include 'presentacion/cabeceraAdministrador.php';
         echo "<td>" . $e->getNombre() . "</td>";
         echo "<td>" . $e->getApellido() . "</td>";
 		echo "<td>" . $e->getCorreo() . "</td>";
-		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas ". ($e->getProyecto()->getId()!="" ? "fa-file-alt" : "fa-exclamation-triangle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title= '". ($e->getProyecto()->getId()!="" ? "Ver Proyecto" : "Proyecto No Subido") ."'></span> </a> </td>";
+		echo "<td> <a data-toggle='modal' data-target='#modalProyecto' href='modalProyecto.php?id=". $e->getProyecto()->getId() . "&origen=E'> <span class='fas ". ($e->getProyecto()->getId()!="" ? "fa-file-alt" : "fa-exclamation-triangle") . "' style='color: ". ($e->getProyecto()->getId()!="" ? '#7EEC3B' : '#CE382B') ."' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title= '". ($e->getProyecto()->getId()!="" ? "Ver Proyecto" : "Proyecto No Subido") ."'></span> </a> </td>";
 		echo "<td>" . 
 
 		"<a href='modalAsignar.php?idE=" . $e->getId() . "&tipo=tutor' data-toggle='modal' data-target='#modalAsignar' ><span id='iconT". $e->getId() ."' class='fas fa-user-plus' style='color: ". ($e->getProyecto()->getTutor()=="" ? '#CE382B' : '#7EEC3B') ."' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='". ($e->getProyecto()->getTutor()=="" ? 'Asignar Tutor' : 'Tutor Asignado') ."' ></span> </a>

@@ -10,10 +10,13 @@ if($bool){
     $file = $proyecto->getDocumento();
 }
 
-//header('Content-type:application/pdf');
-//readfile('documentos/'.$file);
-
 ?>
 
 
-<iframe src="documentos/<?php echo $file; ?>" width="100%" height="563px"></iframe>
+<iframe src="documentos/<?php echo $file; ?>" width="100%" height="931px"></iframe>
+
+<script>
+
+document.title = ' <?php echo $file; ?> ';
+
+</script>

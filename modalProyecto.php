@@ -87,7 +87,7 @@ if ($bool) {
         <div class="card border-dark mb-3" style="max-width: 100%;">
             <div class="card-header">Documento</div>
             <div class="card-body text-dark">
-                <a href="index.php?pid= <?php echo base64_encode("abrirPdf.php") . "&id=" . $_GET['id']; ?>"><?php echo $proyecto->getDocumento(); ?></a>
+                <a href="index.php?pid= <?php echo base64_encode("abrirPdf.php") . "&id=" . $_GET['id']; ?>" target="_blank"><?php echo $proyecto->getDocumento(); ?></a>
 
             </div>
         </div>

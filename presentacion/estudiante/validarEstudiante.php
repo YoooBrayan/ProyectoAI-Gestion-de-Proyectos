@@ -19,7 +19,7 @@ if(!empty($_POST['id2'])){
     $valor = $compa -> existeEstudiante();
     $proy = $compa -> validarProyecto();
 
-    if($valor && !$proy){
+    if($valor && !$proy && $_POST['id2']!=$_SESSION['id']){
         $_SESSION['idCC'] = $_POST['id2'];
         $json = array(
             'id' => $_SESSION['idCC'],
@@ -38,8 +38,16 @@ if(!empty($_POST['id2'])){
         );
         echo json_encode($json);
         //echo "fas fa-exclamation";
-    }
-    else{
+    }else if($_POST['id2']==$_SESSION['id']){
+        $_SESSION['idCC'] = "";
+        $json = array(
+            'icon' => "fas fa-exclamation",
+            'mensaje' => "Usted no puede agregarse a usted mismo :/",
+            'color' => "#F4883D"
+        );
+        echo json_encode($json);
+        //echo "fas fa-exclamation";
+    }else{
         $_SESSION['idCC'] = "";
         $json = array(
             'icon' => "fas fa-times",
